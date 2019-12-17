@@ -133,3 +133,13 @@ cdef class StkMetaData:
     def side_rank(self):
         """Rank for the sidesets"""
         return deref(self.meta).side_rank()
+
+    @property
+    def coordinate_field_name(self):
+        """Return the name of the coordinates field"""
+        return deref(self.meta).coordinate_field_name().decode('UTF-8')
+
+    @coordinate_field_name.setter
+    def coordinate_field_name(self, str coord_name):
+        cdef string cname = coord_name.encode('UTF-8')
+        deref(self.meta).set_coordinate_field_name(cname)

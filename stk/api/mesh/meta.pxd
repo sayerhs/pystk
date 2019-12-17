@@ -46,6 +46,8 @@ cdef extern from "stk_mesh/base/MetaData.hpp" namespace "stk::mesh" nogil:
 
         field_type* get_field[field_type](EntityRank rank, const string& name) const
         FieldBase* get_field_base "get_field"(EntityRank, const string& name) const
+        string coordinate_field_name() const
+        void set_coordinate_field_name(const string&) const
         const FieldBase* coordinate_field() const
         void set_coordinate_field(FieldBase* coord_field)
         const FieldVector& get_fields() const
