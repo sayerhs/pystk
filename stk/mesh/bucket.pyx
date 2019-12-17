@@ -4,7 +4,7 @@
 
 from cython.operator cimport dereference as deref
 from .stk_mesh_fwd cimport EntityRank
-from ..topology.topology cimport StkTopology, rank_to_pyrank
+from ..topology.topology cimport StkTopology
 
 cdef class StkBucket:
     """stk::mesh::Bucket"""
@@ -52,4 +52,4 @@ cdef class StkBucket:
     @property
     def entity_rank(self):
         """EntityRank"""
-        return rank_to_pyrank(deref(self.bkt).entity_rank())
+        return deref(self.bkt).entity_rank()

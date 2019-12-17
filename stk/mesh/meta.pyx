@@ -99,16 +99,15 @@ cdef class StkMetaData:
         spart.part = part
         return spart
 
-    def declare_part(self, part_name, topology.StkRank rank=topology.StkRank.node):
+    def declare_part(self, part_name, topology.rank_t rank=topology.rank_t.NODE_RANK):
         """Declare a new part
 
         Args:
             part_name (str): Name of the part
-            rank (StkRank): Rank of the part (default: StkRank.node)
+            rank (rank_t): Rank of the part (default: NODE_RANK)
         """
         cdef string pname = part_name.encode('UTF-8')
-        cdef topology.rank_t srank = topology.pyrank_to_rank(rank)
-        cdef Part* part = &(deref(self.meta).declare_part(pname, srank))
+        cdef Part* part = &(deref(self.meta).declare_part(pname, rank))
         return StkPart.wrap_instance(part)
 
     def initialize(self, int ndim=3):
@@ -132,14 +131,5 @@ cdef class StkMetaData:
 
     @property
     def side_rank(self):
-        """StkRank for the sidesets"""
-        cdef EntityRank srank = deref(self.meta).side_rank()
-        if srank == topology.NODE_RANK:
-            return topology.StkRank.node
-        elif srank == topology.EDGE_RANK:
-            return topology.StkRank.edge
-        elif srank == topology.FACE_RANK:
-            return topology.StkRank.face
-        else:
-            raise RuntimeError("Invalid rank for side_rank")
-
+        """Rank for the sidesets"""
+        return deref(self.meta).side_rank()

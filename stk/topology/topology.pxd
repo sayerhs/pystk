@@ -5,7 +5,7 @@ from libcpp cimport bool
 from libcpp.string cimport string
 
 cdef extern from "stk_topology/topology.hpp" namespace "stk::topology" nogil:
-    cdef enum rank_t:
+    cpdef enum rank_t:
         NODE_RANK
         EDGE_RANK
         FACE_RANK
@@ -13,7 +13,7 @@ cdef extern from "stk_topology/topology.hpp" namespace "stk::topology" nogil:
         CONSTRAINT_RANK
         INVALID_RANK
 
-    cdef enum topology_t:
+    cpdef enum topology_t:
         INVALID_TOPOLOGY
         BEGIN_TOPOLOGY
         NODE
@@ -75,23 +75,3 @@ cdef class StkTopology:
     @staticmethod
     cdef wrap_instance(topology topo)
 
-cpdef enum StkRank:
-    node = NODE_RANK
-    edge = EDGE_RANK
-    face = FACE_RANK
-    elem = ELEM_RANK
-
-cpdef enum StkTopoType:
-    line_2 = LINE_2
-    tri_3 = TRI_3
-    quad_4 = QUAD_4
-    shell_quad_4 = SHELL_QUAD_4
-    shell_tri_3 = SHELL_TRI_3
-    tet_4 = TET_4
-    pyr_5 = PYRAMID_5
-    wed_6 = WEDGE_6
-    hex_8 = HEX_8
-
-cdef rank_to_pyrank(rank_t rank)
-
-cdef pyrank_to_rank(StkRank rank)

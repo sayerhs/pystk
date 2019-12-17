@@ -3,7 +3,7 @@
 # cython: embedsignature = True
 
 from cython.operator cimport dereference as deref
-from ..topology.topology cimport StkRank
+from ..topology cimport topology
 
 cdef class StkSelector:
     """stk::mesh::Selector
@@ -113,7 +113,6 @@ cdef class StkSelector:
         psel.sel = sel
         return psel
 
-    def is_empty(self, topology.StkRank rank):
+    def is_empty(self, topology.rank_t rank):
         """Check if the selector is empty"""
-        cdef topology.rank_t srank = topology.pyrank_to_rank(rank)
-        return self.sel.is_empty(srank)
+        return self.sel.is_empty(rank)
