@@ -1,5 +1,5 @@
 
-set(STK_MODULE_LOCATION "stk/mesh")
+set(STK_MODULE_LOCATION "stk/api/mesh")
 
 add_stk_module(entity)
 add_stk_module(bucket)

@@ -4,5 +4,5 @@
 Sierra Toolkit (STK)
 ====================
 
-This module provides a high-level interface to STK library
+This module implements python bindings for STK C++ library.
 """
