@@ -3,6 +3,7 @@
 # cython: embedsignature = True
 # cython: infer_types = True
 
+cimport cython
 from libcpp cimport bool
 from libcpp.string cimport string
 cimport numpy as np
@@ -16,7 +17,7 @@ cdef extern from "stk_mesh/base/Entity.hpp" namespace "stk::mesh":
         Entity()
 
 cdef extern from "stk_mesh/base/FieldState.hpp" namespace "stk::mesh":
-    cdef enum FieldState:
+    cpdef enum FieldState:
         StateNone, StateNew, StateNP1,
         StateOld, StateN,
         StateNM1, StateNM2, StateNM3, StateNM4,
@@ -63,7 +64,6 @@ cdef extern from "stk_mesh/base/FieldBase.hpp" namespace "stk::mesh":
 
 cdef class StkFieldBase:
     cdef FieldBase* fld
-    cdef np.dtype dtype
 
     @staticmethod
-    cdef wrap_instance(FieldBase* fld, np.dtype dtype=*)
+    cdef wrap_instance(FieldBase* fld)

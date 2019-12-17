@@ -26,38 +26,16 @@ cdef dict field_state_map = dict(
     StateNM4 = StateNM4
 )
 
-cdef field_data_type(FieldBase* fld):
-    """Get the field datatype"""
-    if deref(fld).type_is[double]():
-        return np.double
-    elif deref(fld).type_is[float]():
-        return np.float
-    elif deref(fld).type_is[int]():
-        return np.int
-    elif deref(fld).type_is[long]():
-        return np.long
-    elif deref(fld).type_is[int64_t]():
-        return np.int64
-    elif deref(fld).type_is[uint64_t]():
-        return np.uint64
-    else:
-        return np.void
-
 
 cdef class StkFieldBase:
 
     def __cinit__(self):
         self.fld = NULL
-        self.dtype = np.void
 
     @staticmethod
-    cdef wrap_instance(FieldBase* fld, np.dtype dtype=None):
+    cdef wrap_instance(FieldBase* fld):
         cdef StkFieldBase sfld = StkFieldBase.__new__(StkFieldBase)
-        cdef np.dtype dtype1 = np.void
-        if (dtype is None) and (fld != NULL):
-            dtype1 = field_data_type(fld)
         sfld.fld = fld
-        sfld.dtype = dtype
         return sfld
 
     @property
@@ -90,27 +68,20 @@ cdef class StkFieldBase:
         """Unique ordinal to identify this field"""
         return deref(self.fld).mesh_meta_data_ordinal()
 
-    def is_state_valid(self, str state):
+    def is_state_valid(self, FieldState state):
         """Check if the requested state is valid"""
-        if state not in field_state_map:
-            raise ValueError("Invalid state requested")
-        cdef FieldState fstate = field_state_map[state]
-        return deref(self.fld).is_state_valid(fstate)
+        return deref(self.fld).is_state_valid(state)
 
-
-    def field_state(self, str state):
+    def field_state(self, FieldState state):
         """Return the field at state
 
         Valid values for state:
             StateNone, StateNew, StateOld
             StateNP1, StateN, StateNM1, StateNM2, StateNM3, StateNM4
         """
-        if state not in field_state_map:
-            raise ValueError("Invalid state requested")
-        cdef FieldState fstate = field_state_map[state]
-        cdef FieldBase* fld = deref(self.fld).field_state(fstate)
+        cdef FieldBase* fld = deref(self.fld).field_state(state)
         assert (fld != NULL), "Invalid field state encountered"
-        return StkFieldBase.wrap_instance(fld, self.dtype)
+        return StkFieldBase.wrap_instance(fld)
 
     def __repr__(self):
         return "<%s: %s>"%(self.__class__.__name__, self.name)
