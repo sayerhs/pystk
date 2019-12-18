@@ -173,7 +173,14 @@ cdef class StkMetaData:
                              topology.rank_t rank=topology.rank_t.NODE_RANK,
                              unsigned number_of_states=1,
                              cython.numeric data=0):
-        """Declare a field"""
+        """Declare a scalar field
+
+        A scalar field is of type `Field<double>` and has rank 0.
+
+        Example:
+            density = meta.declare_scalar_field[double]("density")
+            iblank  = meta.declare_scalar_field[int]("iblank")
+        """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = NULL
         if cython.numeric is double:
@@ -197,7 +204,13 @@ cdef class StkMetaData:
                              topology.rank_t rank=topology.rank_t.NODE_RANK,
                              unsigned number_of_states=1,
                              cython.numeric data=0):
-        """Declare a field"""
+        """Declare a vector field
+
+        A vector field is of type `Field<T, Cartesian>` of rank 1.
+
+        Example:
+            velocity = meta.declare_vector_field[double]("velocity", number_of_states=3)
+        """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = NULL
         if cython.numeric is double:
@@ -221,7 +234,13 @@ cdef class StkMetaData:
                              topology.rank_t rank=topology.rank_t.NODE_RANK,
                              unsigned number_of_states=1,
                              cython.numeric data=0):
-        """Declare a field"""
+        """Declare a generic field of a given datatype
+
+        A generic field is of type `Field<T, SimpleArrayTag>` with rank 1.
+
+        Example:
+            dudx = meta.declare_generic_field[double]("dudx")
+        """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = NULL
         if cython.numeric is double:
