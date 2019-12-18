@@ -4,7 +4,7 @@
 
 from cython.operator cimport dereference as deref
 from ..util.parallel cimport Parallel
-from .entity cimport StkEntity
+from ..topology.topology cimport rank_t
 
 cdef class StkBulkData:
     """stk::mesh::BulkData"""
@@ -115,3 +115,32 @@ cdef class StkBulkData:
     def identifier(self, StkEntity entity):
         """Return a unique identifier for the given entity"""
         return deref(self.bulk).identifier(entity.entity)
+
+    def iter_buckets(self, StkSelector sel, rank_t rank=rank_t.NODE_RANK):
+        """Iterator for looping over STK buckets"""
+        cdef StkBucket sbkt = StkBucket()
+        cdef Selector ssel = sel.sel
+        cdef BulkData* sbulk = self.bulk
+        cdef const BucketVector* bkts = &(deref(self.bulk).get_buckets(rank, sel.sel))
+
+        cdef size_t num_bkts = deref(bkts).size()
+        cdef size_t i
+        for i in range(num_bkts):
+            sbkt.bkt = <Bucket*>deref(bkts)[i]
+            yield sbkt
+
+    def iter_entities(self, StkSelector sel, rank_t rank=rank_t.NODE_RANK):
+        """Iterator for looping over STK buckets"""
+        cdef Bucket* bkt
+        cdef StkEntity ent = StkEntity()
+        cdef const BucketVector* bkts = &(deref(self.bulk).get_buckets(rank, sel.sel))
+        cdef size_t num_bkts = deref(bkts).size()
+        cdef size_t bkt_size
+        cdef size_t i, j
+
+        for i in range(num_bkts):
+            bkt = <Bucket*>deref(bkts)[i]
+            bkt_size = deref(bkt).size()
+            for j in range(bkt_size):
+                ent.entity = deref(bkt)[j]
+                yield ent

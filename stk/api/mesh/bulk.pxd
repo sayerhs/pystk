@@ -4,6 +4,8 @@
 
 from ..util.parallel cimport ParallelMachine
 from .stk_mesh_fwd cimport *
+from .entity cimport *
+from .selector cimport *
 from .bucket cimport *
 from .part cimport *
 from .meta cimport *

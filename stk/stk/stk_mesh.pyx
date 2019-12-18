@@ -4,6 +4,8 @@
 
 from libcpp cimport bool
 from ..api.io.io cimport DatabasePurpose, TimeMatchOption
+from ..api.topology.topology cimport rank_t
+from ..api.mesh.selector cimport StkSelector
 
 cdef class StkMesh:
 
@@ -61,3 +63,11 @@ cdef class StkMesh:
             self.stkio.populate_field_data()
         else:
             self.stkio.populate_bulk_data()
+
+    def iter_buckets(self, StkSelector sel, rank_t rank=rank_t.NODE_RANK):
+        """Yield iterator for looping over buckets"""
+        yield from self.bulk.iter_buckets(sel, rank)
+
+    def iter_entities(self, StkSelector sel, rank_t rank=rank_t.NODE_RANK):
+        """Yield iterator for looping over entities"""
+        yield from self.bulk.iter_entities(sel, rank)
