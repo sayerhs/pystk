@@ -15,6 +15,9 @@ cdef class StkMetaData:
         if self.meta is not NULL and self.meta_owner is True:
             del self.meta
 
+    def __eq__(self, StkMetaData other):
+        return self.meta == other.meta
+
     @staticmethod
     cdef wrap_instance(MetaData* in_meta, bint owner=False):
         cdef StkMetaData meta_data = StkMetaData.__new__(StkMetaData)

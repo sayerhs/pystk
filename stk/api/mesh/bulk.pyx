@@ -17,6 +17,9 @@ cdef class StkBulkData:
         if self.bulk is not NULL and self.bulk_owner is True:
             del self.bulk
 
+    def __eq__(self, StkBulkData other):
+        return self.bulk == other.bulk
+
     @staticmethod
     cdef wrap_instance(BulkData* in_bulk, bint owner=False):
         cdef StkBulkData sbulk = StkBulkData.__new__(StkBulkData)

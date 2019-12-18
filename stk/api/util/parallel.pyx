@@ -20,6 +20,9 @@ cdef class Parallel:
     TODO: Enable linking with mpi4py
     """
 
+    def __eq__(self, Parallel other):
+        return self.comm == other.comm
+
     @staticmethod
     def initialize(arg_list=None):
         """Initialize the MPI object"""
