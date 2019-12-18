@@ -2,7 +2,9 @@
 # distutils: language = c++
 # cython: embedsignature = True
 
+cimport cython
 from cython.operator cimport dereference as deref
+from libcpp.cast cimport const_cast
 from ..topology cimport topology
 
 cdef class StkMetaData:
@@ -98,9 +100,7 @@ cdef class StkMetaData:
         cdef Part* part = deref(self.meta).get_part(pname)
         if must_exist:
             assert(part != NULL)
-        cdef StkPart spart = StkPart.__new__(StkPart)
-        spart.part = part
-        return spart
+        return StkPart.wrap_instance(part)
 
     def declare_part(self, part_name, topology.rank_t rank=topology.rank_t.NODE_RANK):
         """Declare a new part
@@ -146,3 +146,97 @@ cdef class StkMetaData:
     def coordinate_field_name(self, str coord_name):
         cdef string cname = coord_name.encode('UTF-8')
         deref(self.meta).set_coordinate_field_name(cname)
+
+    @property
+    def coordinate_field(self):
+        """Return the coordinate field"""
+        cdef const FieldBase* fld = deref(self.meta).coordinate_field()
+        return StkFieldBase.wrap_instance(const_cast[FieldBasePtr](fld))
+
+    @coordinate_field.setter
+    def coordinate_field(self, StkFieldBase field):
+        """Set a new field as coordinate field"""
+        cdef FieldBase* sfld = field.fld
+        deref(self.meta).set_coordinate_field(sfld)
+
+    def get_field(self, str name,
+                  topology.rank_t rank=topology.rank_t.NODE_RANK,
+                  must_exist=False):
+        """Return a field of name on a requested entity rank"""
+        cdef string fname = name.encode('UTF-8')
+        cdef FieldBase* fld = deref(self.meta).get_field_base(rank, fname)
+        if must_exist:
+            assert fld != NULL, "Field does not exist: %s"%name
+        return StkFieldBase.wrap_instance(fld)
+
+    def declare_scalar_field(self, str name,
+                             topology.rank_t rank=topology.rank_t.NODE_RANK,
+                             unsigned number_of_states=1,
+                             cython.numeric data=0):
+        """Declare a field"""
+        cdef string fname = name.encode('UTF-8')
+        cdef FieldBase* fld = NULL
+        if cython.numeric is double:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[double]](
+                rank, fname, number_of_states))
+        elif cython.numeric is float:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[float]](
+                rank, fname, number_of_states))
+        elif cython.numeric is int:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[int]](
+                rank, fname, number_of_states))
+        elif cython.numeric is long:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[long]](
+                rank, fname, number_of_states))
+
+        if fld == NULL:
+            raise RuntimeError("Invalid field type requested")
+        return StkFieldBase.wrap_instance(fld)
+
+    def declare_vector_field(self, str name,
+                             topology.rank_t rank=topology.rank_t.NODE_RANK,
+                             unsigned number_of_states=1,
+                             cython.numeric data=0):
+        """Declare a field"""
+        cdef string fname = name.encode('UTF-8')
+        cdef FieldBase* fld = NULL
+        if cython.numeric is double:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[double, Cartesian]](
+                rank, fname, number_of_states))
+        elif cython.numeric is float:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[float, Cartesian]](
+                rank, fname, number_of_states))
+        elif cython.numeric is int:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[int, Cartesian]](
+                rank, fname, number_of_states))
+        elif cython.numeric is long:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[long, Cartesian]](
+                rank, fname, number_of_states))
+
+        if fld == NULL:
+            raise RuntimeError("Invalid field type requested")
+        return StkFieldBase.wrap_instance(fld)
+
+    def declare_generic_field(self, str name,
+                             topology.rank_t rank=topology.rank_t.NODE_RANK,
+                             unsigned number_of_states=1,
+                             cython.numeric data=0):
+        """Declare a field"""
+        cdef string fname = name.encode('UTF-8')
+        cdef FieldBase* fld = NULL
+        if cython.numeric is double:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[double, SimpleArrayTag]](
+                rank, fname, number_of_states))
+        elif cython.numeric is float:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[float, SimpleArrayTag]](
+                rank, fname, number_of_states))
+        elif cython.numeric is int:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[int, SimpleArrayTag]](
+                rank, fname, number_of_states))
+        elif cython.numeric is long:
+            fld = <FieldBase*>&(deref(self.meta).declare_field[Field[long, SimpleArrayTag]](
+                rank, fname, number_of_states))
+
+        if fld == NULL:
+            raise RuntimeError("Invalid field type requested")
+        return StkFieldBase.wrap_instance(fld)

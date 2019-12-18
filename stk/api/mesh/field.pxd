@@ -62,6 +62,8 @@ cdef extern from "stk_mesh/base/FieldBase.hpp" namespace "stk::mesh":
     unsigned field_scalars_per_entity(const FieldBase& f, const Bucket& b)
 
 
+ctypedef FieldBase* FieldBasePtr
+
 cdef class StkFieldBase:
     cdef FieldBase* fld
 
