@@ -3,6 +3,7 @@
 # cython: embedsignature = True
 
 from cython.operator cimport dereference as deref
+from ..topology.topology cimport StkTopology, topology
 
 cdef class StkPart:
     """stk::mesh::Part """
@@ -26,7 +27,8 @@ cdef class StkPart:
     def topology(self):
         """Topology of the STK part object"""
         assert(self.part != NULL)
-        return deref(self.part).topology().value()
+        cdef topology topo = deref(self.part).topology()
+        return StkTopology.wrap_instance(topo)
 
     @property
     def part_id(self):
