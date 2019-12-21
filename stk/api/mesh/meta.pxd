@@ -62,13 +62,21 @@ cdef extern from "stk_mesh/base/MetaData.hpp" namespace "stk::mesh" nogil:
         void commit()
         bool is_commit()
 
-    field_type& put_field_on_mesh[field_type](
-        field_type& field, const Part& part, const double* init_value)
-    field_type& put_field_on_mesh[field_type](
-        field_type& field, const Part& part, unsigned n1, const double* init_value)
-    field_type& put_field_on_mesh[field_type](
-        field_type& field, const Part& part, unsigned n1, unsigned n2,
+    FieldBase& put_field_on_mesh[FieldBase](
+        FieldBase& field, const Part& part, const double* init_value)
+    FieldBase& put_field_on_mesh[FieldBase](
+        FieldBase& field, const Part& part, unsigned n1, const double* init_value)
+    FieldBase& put_field_on_mesh[FieldBase](
+        FieldBase& field, const Part& part, unsigned n1, unsigned n2,
         const double* init_value)
+    FieldBase& put_field_on_mesh[FieldBase](
+        FieldBase& field, const Selector& selector, const double* init_value)
+    FieldBase& put_field_on_mesh[FieldBase](
+        FieldBase& field, const Selector& selector, unsigned n1, const double* init_value)
+    FieldBase& put_field_on_mesh[FieldBase](
+        FieldBase& field, const Selector& selector, unsigned n1, unsigned n2,
+        const double* init_value)
+
 
 cdef class StkMetaData:
     cdef MetaData* meta

@@ -164,6 +164,26 @@ cdef class StkFieldBase:
         else:
             put_field_on_mesh(deref(sfield), deref(spart), num_components, init_ptr)
 
+    def add_to_selected(self, StkSelector sel,
+                        int num_components=1, double[:] init_value=None):
+        """Register field to parts matching the given selector
+
+        Args:
+            sel (StkSelector): Selector for parts where this field is added
+            num_components (int): Number of components
+            init_value (np.ndarray): Array of initialization values for the field on part
+        """
+        cdef Selector ssel = sel.sel
+        cdef FieldBase* sfield = self.fld
+        cdef double* init_ptr = NULL
+        if init_value is not None:
+            assert num_components == init_value.shape[0], "Size mismatch in initial value"
+            init_ptr = &init_value[0]
+        if num_components == 1:
+            put_field_on_mesh(deref(sfield), ssel, init_ptr)
+        else:
+            put_field_on_mesh(deref(sfield), ssel, num_components, init_ptr)
+
     def __repr__(self):
         if self.fld != NULL:
             return "<%s: %s>"%(self.__class__.__name__, self.name)
