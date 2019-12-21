@@ -15,6 +15,38 @@ cimport numpy as np
 import numpy as np
 
 cdef class StkFieldBase:
+    """stk::mesh::FieldBase
+
+    .. code-block:: python
+
+       # Declaring a field (keyword arguments are optional, defaults shown)
+       pressure = meta.declare_scalar_field(
+       "pressure", rank=rank_t.NODE_RANK, number_of_states=1)
+       # Overriding defaults
+       velocity = meta.declare_vector_field("velocity", rank_t.NODE_RANK, 3)
+
+       # Getting a field (keyword arguments are optional, defaults shown)
+       pressure1 = meta.get_field("pressure", rank=rank_t.NODE_RANK, must_exist=False)
+
+       ### Accessing field data
+       #
+       # For an entity
+       pres = pressure.get(entity)
+       vel = velocity.get(entity)
+       old = pres[0]
+       pres[0] = 20.0
+       vel[0] = 10.0
+       vel[1] = 5.0
+       vel[2] = 0.0
+
+       # For buckets
+       pres_bkt = pressure.bkt_view(bkt)
+       tmp = pres_bkt[-1]
+       pres_bkt[-1] = 20.0
+
+       vel_bkt = velocity.bkt_view(bkt)
+       vel_bkt[-1, 2] = 0.0
+    """
 
     def __cinit__(self):
         self.fld = NULL
