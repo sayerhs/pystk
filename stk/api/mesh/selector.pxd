@@ -5,6 +5,7 @@
 from libcpp cimport bool
 from .stk_mesh_fwd cimport *
 from .part cimport *
+from .field cimport *
 
 cdef extern from "stk_mesh/base/Selector.hpp" namespace "stk::mesh" nogil:
     cdef cppclass Selector:

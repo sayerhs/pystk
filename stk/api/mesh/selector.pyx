@@ -31,6 +31,12 @@ cdef class StkSelector:
         return sel
 
     @staticmethod
+    def select_field(StkFieldBase field):
+        cdef StkSelector sel = StkSelector.__new__(StkSelector)
+        sel.sel = Selector(deref(field.fld))
+        return sel
+
+    @staticmethod
     def select_union(parts):
         """Create STK Selector from a list of parts
 
