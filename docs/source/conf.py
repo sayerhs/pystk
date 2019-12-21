@@ -61,3 +61,4 @@ html_static_path = ['_static']
 
 # -- autodoc options ---------------------------------------------------------
 autodoc_member_order = 'groupwise'
+autoclass_content = 'both'

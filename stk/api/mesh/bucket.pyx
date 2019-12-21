@@ -51,5 +51,5 @@ cdef class StkBucket:
 
     @property
     def entity_rank(self):
-        """EntityRank"""
+        """Entity rank corresponding to this bucket"""
         return deref(self.bkt).entity_rank()

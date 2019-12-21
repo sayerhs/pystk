@@ -8,7 +8,8 @@ from ..topology cimport topology
 cdef class StkSelector:
     """stk::mesh::Selector
 
-    StkSelector provides the most used features of `stk::mesh::Selector` through its methods.
+    StkSelector provides the most used features of ``stk::mesh::Selector``
+    through its methods.
 
     .. code-block:: python
 
@@ -27,12 +28,30 @@ cdef class StkSelector:
 
     @staticmethod
     def from_part(StkPart part):
+        """Create a selector from part
+
+        Args:
+            part (StkPart): Part instance
+
+        Return:
+            StkSelector: Newly created selector instance
+        """
         cdef StkSelector sel = StkSelector.__new__(StkSelector)
         sel.sel = Selector(deref(part.part))
         return sel
 
     @staticmethod
     def select_field(StkFieldBase field):
+        """Create a selector from a field instance
+
+        Equivalent to ``stk::mesh::selectField``
+
+        Args:
+            field (StkFieldBase): Field instance
+
+        Return:
+            StkSelector: Newly created selector instance
+        """
         cdef StkSelector sel = StkSelector.__new__(StkSelector)
         sel.sel = Selector(deref(field.fld))
         return sel
@@ -57,7 +76,14 @@ cdef class StkSelector:
 
     @staticmethod
     def and_(sel1, *args):
-        """Get an intersection of selectors"""
+        """Get an intersection of selectors
+
+        The arguments can either be :class:`~stk.api.mesh.part.Part` or
+        :class:`~stk.api.mesh.selector.StkSelector` instances.
+
+        Return:
+            StkSelector: Newly created selector instance
+        """
         cdef Selector sel
         cdef StkSelector stmp
         cdef StkPart ptmp
@@ -86,7 +112,14 @@ cdef class StkSelector:
 
     @staticmethod
     def or_(sel1, *args):
-        """Get a union of selectors"""
+        """Get a union of selectors
+
+        The arguments can either be :class:`~stk.api.mesh.part.Part` or
+        :class:`~stk.api.mesh.selector.StkSelector` instances.
+
+        Return:
+            StkSelector: Newly created selector instance
+        """
         cdef Selector sel
         cdef StkSelector stmp
         cdef StkPart ptmp
@@ -121,5 +154,12 @@ cdef class StkSelector:
         return psel
 
     def is_empty(self, topology.rank_t rank):
-        """Check if the selector is empty"""
+        """Check if the selector contains entities of a given rank
+
+        Args:
+            rank (rank_t): Entity rank
+
+        Return:
+            bool: True if the selector does not contain entities of the given rank
+        """
         return self.sel.is_empty(rank)

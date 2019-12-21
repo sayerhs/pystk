@@ -29,8 +29,7 @@ cdef class StkMetaData:
 
     @staticmethod
     def create(int ndim = 3):
-        """
-        Create a new stk::mesh::MetaData instance
+        """Create a new stk::mesh::MetaData instance
 
         Args:
             ndim (int): Spatial dimension of this STK mesh
@@ -43,7 +42,7 @@ cdef class StkMetaData:
 
     @property
     def has_mesh(self):
-        """Does MetaData have a BulkData instance"""
+        """Does MetaData have a BulkData instance?"""
         return deref(self.meta).has_mesh()
 
     @property
@@ -77,7 +76,14 @@ cdef class StkMetaData:
         return StkPart.wrap_instance(&deref(self.meta).aura_part())
 
     def get_parts(self, io_parts_only=True):
-        """Get all parts registered in STK Mesh"""
+        """Get all parts registered in STK Mesh
+
+        Args:
+            io_parts_only (bool): If True, filters internal STK parts
+
+        Return:
+            [StkPart]: List of parts
+        """
         assert(self.meta != NULL)
         pparts = []
         cdef const PartVector* part_vec = &deref(self.meta).get_parts()
@@ -96,7 +102,18 @@ cdef class StkMetaData:
         return pparts
 
     def get_part(self, part_name, must_exist=False):
-        """Return a part instance"""
+        """Get a part by name if it exists
+
+        Args:
+            part_name (str): Name of the part
+            must_exist (bool): If true, raises AssertionError
+
+        Return:
+            StkPart: part instance corresponding to name
+
+        Raises:
+            AttributeError: If must_exist is True and part doesn't exist
+        """
         cdef string pname = part_name.encode('UTF-8')
         cdef Part* part = deref(self.meta).get_part(pname)
         if must_exist:
@@ -106,16 +123,26 @@ cdef class StkMetaData:
     def declare_part(self, part_name, topology.rank_t rank=topology.rank_t.NODE_RANK):
         """Declare a new part
 
+        If this method is called mutiple times with the same part name, it will
+        return the same part instance.
+
         Args:
             part_name (str): Name of the part
             rank (rank_t): Rank of the part (default: NODE_RANK)
+
+        Return:
+            StkPart: The newly created part
         """
         cdef string pname = part_name.encode('UTF-8')
         cdef Part* part = &(deref(self.meta).declare_part(pname, rank))
         return StkPart.wrap_instance(part)
 
     def initialize(self, int ndim=3):
-        """Initialize the STK mesh"""
+        """Initialize the STK mesh
+
+        Args:
+            ndim (int): Spatial dimension
+        """
         assert(self.meta != NULL)
         deref(self.meta).initialize(ndim)
 
@@ -163,7 +190,16 @@ cdef class StkMetaData:
     def get_field(self, str name,
                   topology.rank_t rank=topology.rank_t.NODE_RANK,
                   must_exist=False):
-        """Return a field of name on a requested entity rank"""
+        """Return a field of name on a requested entity rank
+
+        Args:
+            name (str): Name of the field
+            rank (rank_t): ``NODE_RANK``, ``ELEM_RANK``, etc.
+            must_exist (bool): If True, raise error if the field doesn't exist
+
+        Return:
+            StkFieldBase: The field instance
+        """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = deref(self.meta).get_field_base(rank, fname)
         if must_exist:
@@ -173,7 +209,16 @@ cdef class StkMetaData:
     def declare_scalar_field(self, str name,
                              topology.rank_t rank=topology.rank_t.NODE_RANK,
                              unsigned number_of_states=1):
-        """Declare a double scalar field"""
+        """Declare a double scalar field
+
+        Args:
+            name (str): Name of the field
+            rank (rank_t): ``NODE_RANK``, ``ELEM_RANK``, etc.
+            number_of_states (int): Number of states associated with this field
+
+        Return:
+            StkFieldBase: The field instance
+        """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = NULL
         fld = <FieldBase*>&(deref(self.meta).declare_field[Field[double]](
@@ -183,7 +228,16 @@ cdef class StkMetaData:
     def declare_vector_field(self, str name,
                              topology.rank_t rank=topology.rank_t.NODE_RANK,
                              unsigned number_of_states=1):
-        """Declare a double vector field"""
+        """Declare a double vector field
+
+        Args:
+            name (str): Name of the field
+            rank (rank_t): ``NODE_RANK``, ``ELEM_RANK``, etc.
+            number_of_states (int): Number of states associated with this field
+
+        Return:
+            StkFieldBase: The field instance
+        """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = NULL
         fld = <FieldBase*>&(deref(self.meta).declare_field[Field[double, Cartesian]](
@@ -193,7 +247,16 @@ cdef class StkMetaData:
     def declare_generic_field(self, str name,
                              topology.rank_t rank=topology.rank_t.NODE_RANK,
                              unsigned number_of_states=1):
-        """Declare a double generic field"""
+        """Declare a double generic field
+
+        Args:
+            name (str): Name of the field
+            rank (rank_t): ``NODE_RANK``, ``ELEM_RANK``, etc.
+            number_of_states (int): Number of states associated with this field
+
+        Return:
+            StkFieldBase: The field instance
+        """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = NULL
         fld = <FieldBase*>&(deref(self.meta).declare_field[Field[double, SimpleArrayTag]](
@@ -206,11 +269,20 @@ cdef class StkMetaData:
                                cython.numeric data=0):
         """Declare a scalar field of a given type
 
-        A scalar field is of type `Field<T>` and has rank 0.
+        A scalar field is of type ``Field<T>`` and has rank 0.
 
-        Example:
+        .. code-block:: python
+
             density = meta.declare_scalar_field[double]("density")
             iblank  = meta.declare_scalar_field[int]("iblank")
+
+        Args:
+            name (str): Name of the field
+            rank (rank_t): ``NODE_RANK``, ``ELEM_RANK``, etc.
+            number_of_states (int): Number of states associated with this field
+
+        Return:
+            StkFieldBase: The field instance
         """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = NULL
@@ -237,10 +309,19 @@ cdef class StkMetaData:
                                cython.numeric data=0):
         """Declare a vector field
 
-        A vector field is of type `Field<T, Cartesian>` of rank 1.
+        A vector field is of type ``Field<T, Cartesian>`` of rank 1.
 
-        Example:
+        .. code-block:: python
+
             velocity = meta.declare_vector_field[double]("velocity", number_of_states=3)
+
+        Args:
+            name (str): Name of the field
+            rank (rank_t): ``NODE_RANK``, ``ELEM_RANK``, etc.
+            number_of_states (int): Number of states associated with this field
+
+        Return:
+            StkFieldBase: The field instance
         """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = NULL
@@ -267,10 +348,19 @@ cdef class StkMetaData:
                                 cython.numeric data=0):
         """Declare a generic field of a given datatype
 
-        A generic field is of type `Field<T, SimpleArrayTag>` with rank 1.
+        A generic field is of type ``Field<T, SimpleArrayTag>`` with rank 1.
 
-        Example:
+        .. code-block:: python
+
             dudx = meta.declare_generic_field[double]("dudx")
+
+        Args:
+            name (str): Name of the field
+            rank (rank_t): ``NODE_RANK``, ``ELEM_RANK``, etc.
+            number_of_states (int): Number of states associated with this field
+
+        Return:
+            StkFieldBase: The field instance
         """
         cdef string fname = name.encode('UTF-8')
         cdef FieldBase* fld = NULL

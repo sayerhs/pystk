@@ -30,12 +30,12 @@ cdef class StkFieldBase:
 
     @property
     def meta_data(self):
-        """stk::mesh::MetaData associated with this field"""
+        """``stk::mesh::MetaData`` associated with this field"""
         return StkMetaData.wrap_instance(&deref(self.fld).mesh_meta_data())
 
     @property
     def bulk_data(self):
-        """stk::mesh::BulkData associated with this field"""
+        """``stk::mesh::BulkData`` associated with this field"""
         return StkBulkData.wrap_instance(&deref(self.fld).get_mesh())
 
     @property
@@ -59,29 +59,67 @@ cdef class StkFieldBase:
         return deref(self.fld).mesh_meta_data_ordinal()
 
     def is_state_valid(self, FieldState state):
-        """Check if the requested state is valid"""
+        """Check if the requested state is valid
+
+        Args:
+            state (FieldState): State parameter
+
+        Return:
+            bool: True if the field has the requested state
+        """
         return deref(self.fld).is_state_valid(state)
 
     def field_state(self, FieldState state):
         """Return the field at state
 
-        Valid values for state:
-            StateNone, StateNew, StateOld
-            StateNP1, StateN, StateNM1, StateNM2, StateNM3, StateNM4
+        Args:
+            state (FieldState): State parameter
+
+        Return:
+            StkFieldBase: Field instance corresponding to the state requested
         """
         cdef FieldBase* fld = deref(self.fld).field_state(state)
         assert (fld != NULL), "Invalid field state encountered"
         return StkFieldBase.wrap_instance(fld)
 
     def get(self, StkEntity entity):
-        """Get the data for a given entity"""
+        """Get the data for a given entity
+
+        Returns a 1-D numpy array containing 1 element for scalar, 3 for vector
+        and so on. For scalars data types, returning a numpy array of shape
+        ``(1,)`` allows modification of field data from the python. For
+        example,
+
+        .. code-block:: python
+
+           pressure = pressure_field.get(entity)
+           pressure[0] = 10.0
+
+        Args:
+            entity (StkEntity): Entity instance
+
+        Return:
+            np.ndarray: View of the entity data
+
+        """
         cdef Entity sentity = entity.entity
         cdef void* ptr = field_data(deref(self.fld), sentity)
         cdef unsigned ncomp = field_scalars_per_entity(deref(self.fld), sentity)
         return np.asarray(<double[:ncomp]>ptr)
 
     def bkt_view(self, StkBucket bkt):
-        """Get the data view for a bucket"""
+        """Get the data view for a bucket
+
+        For scalar fields, this method returns a 1-D array with ``bkt.size``
+        elements. For vector fields, it returns a 2-D array of shape
+        ``(bkt.size, num_components)``.
+
+        Args:
+            bkt (StkBucket): Bucket instance
+
+        Return:
+            np.ndarray: View of the bucket data as a NumPy array
+        """
         cdef Bucket* sbkt = bkt.bkt
         cdef void* ptr = field_data(deref(self.fld), deref(sbkt))
         cdef unsigned ncomp = field_scalars_per_entity(deref(self.fld), deref(sbkt))
@@ -108,7 +146,13 @@ cdef class StkFieldBase:
             return np.asarray(<cython.numeric[:bkt.size, :ncomp]>ptr)
 
     def add_to_part(self, StkPart part, int num_components=1, double[:] init_value=None):
-        """Register field to a given part"""
+        """Register field to a given part
+
+        Args:
+            part (StkPart): Part instance
+            num_components (int): Number of components
+            init_value (np.ndarray): Array of initialization values for the field on part
+        """
         cdef Part* spart = part.part
         cdef FieldBase* sfield = self.fld
         cdef double* init_ptr = NULL

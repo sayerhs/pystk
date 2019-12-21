@@ -41,12 +41,20 @@ cdef class StkPart:
 
     @property
     def is_null(self):
-        """Check if the part is null"""
+        """Does the part exist in the MetaData
+
+        Return:
+            bool: If True, ``meta.get_part(...)`` returned ``nullptr``
+        """
         return (self.part == NULL)
 
     @property
     def supersets(self):
-        """Supersets of this part"""
+        """Supersets of this part
+
+        Return:
+            list: List of super parts
+        """
         cdef const PartVector* sset = &deref(self.part).supersets()
         cdef size_t nparts = deref(sset).size()
         cdef list plist = []
@@ -56,7 +64,11 @@ cdef class StkPart:
 
     @property
     def subsets(self):
-        """Subsets of this part"""
+        """Subsets of this part
+
+        Return:
+            list: List of sub-parts
+        """
         cdef const PartVector* sset = &deref(self.part).subsets()
         cdef size_t nparts = deref(sset).size()
         cdef Part* pp
@@ -70,4 +82,7 @@ cdef class StkPart:
         return deref(self.part).contains(deref(part.part))
 
     def __repr__(self):
-        return "<StkPart: %s>"%self.name
+        if self.part == NULL:
+            return "<StkPart: NULL>"
+        else:
+            return "<StkPart: %s>"%self.name

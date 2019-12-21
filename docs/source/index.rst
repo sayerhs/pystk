@@ -128,6 +128,7 @@ StkMesh
 ~~~~~~~
 .. autoclass:: stk.stk.stk_mesh.StkMesh
    :members:
+   :exclude-members: declare_scalar_field_t
 
    .. attribute:: meta
 
@@ -199,6 +200,25 @@ Parallel
 ~~~~~~~~
 .. autoclass:: stk.api.util.parallel.Parallel
    :members:
+
+Enumerated data types
+~~~~~~~~~~~~~~~~~~~~~
+.. autoclass:: stk.api.topology.topology.rank_t
+   :members:
+   :undoc-members:
+
+.. autoclass:: stk.api.io.io.DatabasePurpose
+   :members:
+   :undoc-members:
+
+.. autoclass:: stk.api.io.io.TimeMatchOption
+   :members:
+   :undoc-members:
+
+.. autoclass:: stk.api.topology.topology.topology_t
+   :members:
+   :undoc-members:
+
 
 Indices and tables
 ------------------

@@ -29,6 +29,15 @@ cdef class StkBulkData:
 
     @staticmethod
     def create(StkMetaData smeta, Parallel par):
+        """Create a BulkData instance
+
+        Args:
+            smeta (StkMetaData): MetaData instance to create Bulkdata
+            par (Parallel): Parallel communicator object
+
+        Return:
+            StkBulkData: Newly created BulkData
+        """
         cdef BulkData* bulk = new BulkData(deref(smeta.meta), par.comm)
         return StkBulkData.wrap_instance(bulk)
 
@@ -70,14 +79,17 @@ cdef class StkBulkData:
 
     @property
     def is_automatic_aura_on(self):
+        """Flag indicating whether aura is on"""
         return deref(self.bulk).is_automatic_aura_on()
 
     @property
     def synchronized_count(self):
+        """Synchronization counter"""
         return deref(self.bulk).synchronized_count()
 
     @property
     def get_max_allowed_id(self):
+        """Maximum allowed entity ID"""
         return deref(self.bulk).get_max_allowed_id()
 
     def identifier(self, StkEntity entity):
@@ -117,7 +129,15 @@ cdef class StkBulkData:
         return deref(self.bulk).identifier(entity.entity)
 
     def iter_buckets(self, StkSelector sel, rank_t rank=rank_t.NODE_RANK):
-        """Iterator for looping over STK buckets"""
+        """Iterator for looping over STK buckets
+
+        Args:
+            sel (StkSelector): Selector for fetching the desired entities
+            rank (rank_t): Entity rank
+
+        Yield:
+            StkBucket: Bucket instances
+        """
         cdef StkBucket sbkt = StkBucket()
         cdef Selector ssel = sel.sel
         cdef BulkData* sbulk = self.bulk
@@ -130,7 +150,15 @@ cdef class StkBulkData:
             yield sbkt
 
     def iter_entities(self, StkSelector sel, rank_t rank=rank_t.NODE_RANK):
-        """Iterator for looping over STK buckets"""
+        """Iterator for looping over STK buckets
+
+        Args:
+            sel (StkSelector): Selector for fetching the desired entities
+            rank (rank_t): Entity rank
+
+        Yield:
+            StkEntity: entities
+        """
         cdef Bucket* bkt
         cdef StkEntity ent = StkEntity()
         cdef const BucketVector* bkts = &(deref(self.bulk).get_buckets(rank, sel.sel))

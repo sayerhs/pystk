@@ -30,7 +30,9 @@ cdef class StkMesh:
                             str auto_decomp_type="rcb"):
         """Open a file and load the meta data from the file
 
-        This method combines various operations of the STK I/O for simplicity
+        This method combines various operations of the
+        :class:`~stk.api.io.io.StkIoBroker` for simplicity
+
             - Register an input mesh database
             - Assign bulk data with the STK I/O instance
             - Creates the metadata from the input mesh
@@ -38,10 +40,11 @@ cdef class StkMesh:
 
         Args:
             filename (str): Path to the Exodus database
-            purpose: DatabasePurpose (READ_MESH, READ_RESTART)
-            tmo: TimeMatchOption (CLOSEST, LINEAR_INTERPOLATION)
+            purpose (DatabasePurpose): READ_MESH, READ_RESTART
+            tmo (TimeMatchOption): CLOSEST, LINEAR_INTERPOLATION
             auto_decomp (bool): Decompose mesh for parallel runs (default: True)
             auto_decomp_type (str): Decomposition type (default: rcb)
+
         """
         if auto_decomp and self.comm.size > 1:
             self.stkio.add_property("DECOMPOSITION_METHOD", auto_decomp_type)
@@ -60,7 +63,7 @@ cdef class StkMesh:
     def populate_bulk_data(self, create_edges=False):
         """Commit MetaData and populate BulkData from the input database.
 
-        If `create_edges is True`, then edge entities will be created before
+        If ``create_edges is True``, then edge entities will be created before
         the field data is loaded.
         """
         cdef BulkData* bulk = NULL
