@@ -78,6 +78,21 @@ Once the package is installed in *editable mode* or (*development mode*), you
 can execute the ``build_ext`` command after editing the Cython files and have the
 latest version of the compiled extensions available within your environment.
 
+.. note::
+
+   If you have newer versions of CMake (3.15 or higher), then you can create an
+   environment variable ``STK_ROOT`` and avoid passing additional arguments to
+   ``build_ext``. For example,
+
+   .. code-block:: bash
+
+      export STK_ROOT=${TRILINOS_INSTALL_DIR}
+      # Installation mode
+      python setup.py install
+
+      # Development mode
+      python setup.py build_ext --inplace
+
 
 Basic Usage
 -----------
