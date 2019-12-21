@@ -21,6 +21,12 @@ cdef extern from "stk_mesh/base/Part.hpp" namespace "stk::mesh" nogil:
         const PartVector& supersets() const
         const PartVector& subsets() const
 
+cdef extern from "stk_io/IossBridge.hpp" namespace "stk::io":
+    bool is_part_io_part(const Part& part)
+    void put_io_part_attribute(Part& part)
+    void remove_io_part_attribute(Part& part)
+    bool has_io_part_attribute(Part& part)
+
 cdef class StkPart:
     cdef Part* part
 

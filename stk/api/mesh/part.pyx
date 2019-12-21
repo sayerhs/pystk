@@ -77,6 +77,22 @@ cdef class StkPart:
             plist.append(StkPart.wrap_instance(deref(sset)[i]))
         return plist
 
+    @property
+    def is_io_part(self):
+        """Return True if this part is an I/O part"""
+        is_part_io_part(deref(self.part))
+
+    def set_io_attribute(self, set_io=True):
+        """Set the I/O attribute for this part.
+
+        Args:
+            set_io (bool): If True add to I/O, else remove from I/O
+        """
+        if set_io:
+            put_io_part_attribute(deref(self.part))
+        else:
+            remove_io_part_attribute(deref(self.part))
+
     def contains(self, StkPart part):
         """Is the part containined within this part"""
         return deref(self.part).contains(deref(part.part))
