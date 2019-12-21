@@ -11,4 +11,5 @@ from .api.util.parallel import Parallel
 from .api.topology.topology import rank_t as StkRank
 from .api.mesh.field import FieldState as StkState
 from .api.mesh.selector import StkSelector
+from .api.io.io import DatabasePurpose, TimeMatchOption
 from .stk.stk_mesh import StkMesh
