@@ -2,10 +2,12 @@
 # distutils: language = c++
 # cython: embedsignature = True
 
+from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from ..api.io.io cimport DatabasePurpose, TimeMatchOption
 from ..api.topology.topology cimport rank_t
 from ..api.mesh.selector cimport StkSelector
+from ..api.mesh.misc cimport *
 
 cdef class StkMesh:
 
@@ -52,14 +54,19 @@ cdef class StkMesh:
         coords.add_to_part(self.meta.universal_part,
                            self.meta.spatial_dimension)
 
+    cdef create_edges_helper(self):
+        create_edges(deref(self.bulk.bulk))
+
     def populate_bulk_data(self, create_edges=False):
         """Commit MetaData and populate BulkData from the input database.
 
         If `create_edges is True`, then edge entities will be created before
         the field data is loaded.
         """
+        cdef BulkData* bulk = NULL
         if create_edges:
             self.stkio.populate_mesh()
+            self.create_edges_helper()
             self.stkio.populate_field_data()
         else:
             self.stkio.populate_bulk_data()

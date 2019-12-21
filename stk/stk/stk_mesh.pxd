@@ -12,3 +12,5 @@ cdef class StkMesh:
     cdef readonly StkMetaData meta
     cdef readonly StkBulkData bulk
     cdef readonly StkIoBroker stkio
+
+    cdef create_edges_helper(self)
