@@ -94,6 +94,18 @@ latest version of the compiled extensions available within your environment.
       python setup.py build_ext --inplace
 
 
+Common build issues
+~~~~~~~~~~~~~~~~~~~
+
+If you are using `Anaconda Python <https://www.anaconda.com/>`_ (or Conda),
+please make sure that you install `mpi4py
+<https://mpi4py.readthedocs.io/en/stable/>`_ and `netcdf4-python
+<https://unidata.github.io/netcdf4-python/netCDF4/index.html>`_ via source and
+that the MPI you used to build these packages are consistent with the ones used
+to build STK/Trilinos. Incompatibilities amongst MPI libraries used to build
+STK/Trilinos and NetCDF4 can cause spurious memory errors and error messages
+when attempting to open Exodus-II databases.
+
 Basic Usage
 -----------
 
@@ -135,6 +147,14 @@ show the C++ source and its corresponding python equivalent.
 
    if part.is_null:
        print("Part does not exist")
+
+
+The following python script shows a sample interaction using the pySTK library.
+You can :download:`download the script <datafiles/basic_usage.py>`.
+
+.. literalinclude:: datafiles/basic_usage.py
+   :language: python
+   :linenos:
 
 pySTK API Reference
 -------------------
