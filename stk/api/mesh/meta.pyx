@@ -29,7 +29,8 @@ cdef class StkMetaData:
 
     @staticmethod
     def create(int ndim = 3):
-        """Create a new stk::mesh::MetaData instance
+        """
+        Create a new stk::mesh::MetaData instance
 
         Args:
             ndim (int): Spatial dimension of this STK mesh
@@ -171,11 +172,41 @@ cdef class StkMetaData:
 
     def declare_scalar_field(self, str name,
                              topology.rank_t rank=topology.rank_t.NODE_RANK,
-                             unsigned number_of_states=1,
-                             cython.numeric data=0):
-        """Declare a scalar field
+                             unsigned number_of_states=1):
+        """Declare a double scalar field"""
+        cdef string fname = name.encode('UTF-8')
+        cdef FieldBase* fld = NULL
+        fld = <FieldBase*>&(deref(self.meta).declare_field[Field[double]](
+            rank, fname, number_of_states))
+        return StkFieldBase.wrap_instance(fld)
 
-        A scalar field is of type `Field<double>` and has rank 0.
+    def declare_vector_field(self, str name,
+                             topology.rank_t rank=topology.rank_t.NODE_RANK,
+                             unsigned number_of_states=1):
+        """Declare a double vector field"""
+        cdef string fname = name.encode('UTF-8')
+        cdef FieldBase* fld = NULL
+        fld = <FieldBase*>&(deref(self.meta).declare_field[Field[double, Cartesian]](
+            rank, fname, number_of_states))
+        return StkFieldBase.wrap_instance(fld)
+
+    def declare_generic_field(self, str name,
+                             topology.rank_t rank=topology.rank_t.NODE_RANK,
+                             unsigned number_of_states=1):
+        """Declare a double generic field"""
+        cdef string fname = name.encode('UTF-8')
+        cdef FieldBase* fld = NULL
+        fld = <FieldBase*>&(deref(self.meta).declare_field[Field[double, SimpleArrayTag]](
+            rank, fname, number_of_states))
+        return StkFieldBase.wrap_instance(fld)
+
+    def declare_scalar_field_t(self, str name,
+                               topology.rank_t rank=topology.rank_t.NODE_RANK,
+                               unsigned number_of_states=1,
+                               cython.numeric data=0):
+        """Declare a scalar field of a given type
+
+        A scalar field is of type `Field<T>` and has rank 0.
 
         Example:
             density = meta.declare_scalar_field[double]("density")
@@ -200,10 +231,10 @@ cdef class StkMetaData:
             raise RuntimeError("Invalid field type requested")
         return StkFieldBase.wrap_instance(fld)
 
-    def declare_vector_field(self, str name,
-                             topology.rank_t rank=topology.rank_t.NODE_RANK,
-                             unsigned number_of_states=1,
-                             cython.numeric data=0):
+    def declare_vector_field_t(self, str name,
+                               topology.rank_t rank=topology.rank_t.NODE_RANK,
+                               unsigned number_of_states=1,
+                               cython.numeric data=0):
         """Declare a vector field
 
         A vector field is of type `Field<T, Cartesian>` of rank 1.
@@ -230,10 +261,10 @@ cdef class StkMetaData:
             raise RuntimeError("Invalid field type requested")
         return StkFieldBase.wrap_instance(fld)
 
-    def declare_generic_field(self, str name,
-                             topology.rank_t rank=topology.rank_t.NODE_RANK,
-                             unsigned number_of_states=1,
-                             cython.numeric data=0):
+    def declare_generic_field_t(self, str name,
+                                topology.rank_t rank=topology.rank_t.NODE_RANK,
+                                unsigned number_of_states=1,
+                                cython.numeric data=0):
         """Declare a generic field of a given datatype
 
         A generic field is of type `Field<T, SimpleArrayTag>` with rank 1.
