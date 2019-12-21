@@ -81,3 +81,23 @@ cdef class StkMesh:
     def iter_entities(self, StkSelector sel, rank_t rank=rank_t.NODE_RANK):
         """Yield iterator for looping over entities"""
         yield from self.bulk.iter_entities(sel, rank)
+
+    def set_io_properties(self, **kwargs):
+        """Set IOSS properties for Exodus I/O
+
+        One of more key-value pairs
+        """
+        for key, value in kwargs.items():
+            self.stkio.add_property(key, value)
+
+    def set_auto_join(self, output=True, restart=True):
+        """Turn auto-join on/off for output/restart
+
+        Args:
+            output (bool): If True, auto-join output files
+            restart (bool): If True, auto-join restart files
+        """
+        out_opt = "YES" if output else "NO"
+        rst_opt = "YES" if restart else "NO"
+        self.stkio.add_property("COMPSOSE_RESULTS", out_opt)
+        self.stkio.add_property("COMPSOSE_RESTART", rst_opt)
