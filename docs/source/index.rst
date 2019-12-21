@@ -242,6 +242,10 @@ Enumerated data types
    :members:
    :undoc-members:
 
+.. autoclass:: stk.api.mesh.field.FieldState
+   :members:
+   :undoc-members:
+
 .. autoclass:: stk.api.io.io.DatabasePurpose
    :members:
    :undoc-members:
