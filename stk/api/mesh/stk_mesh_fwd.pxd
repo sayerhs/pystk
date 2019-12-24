@@ -6,6 +6,8 @@
 from cython.operator cimport dereference as deref
 from libc.stdint cimport uint64_t, int64_t
 from libcpp.vector cimport vector
+from libcpp.pair cimport pair
+from libcpp.map cimport map
 from ..topology cimport topology
 
 cdef extern from "stk_mesh/base/Entity.hpp" namespace "stk::mesh" nogil:
@@ -32,6 +34,12 @@ cdef extern from "stk_mesh/base/Bucket.hpp" namespace "stk::mesh" nogil:
 cdef extern from "stk_mesh/base/Selector.hpp" namespace "stk::mesh" nogil:
     cdef cppclass Selector
 
+cdef extern from "stk_mesh/base/EntityKey.hpp" namespace "stk::mesh" nogil:
+    cdef cppclass EntityKey
+
+cdef extern from "stk_mesh/base/Ghosting.hpp" namespace "stk::mesh" nogil:
+    cdef cppclass Ghosting
+
 cdef extern from "stk_mesh/base/CoordinateSystems.hpp" namespace "stk::mesh" nogil:
     cdef cppclass Cartesian3d
     cdef cppclass Cartesian2d
@@ -54,6 +62,13 @@ cdef extern from "stk_mesh/base/Types.hpp" namespace "stk::mesh" nogil:
     ctypedef topology.rank_t EntityRank
     ctypedef unsigned Ordinal
     ctypedef uint64_t EntityId
+    ctypedef vector[EntityId] EntityIdVector
+    ctypedef pair[Entity, int] EntityProc
+    ctypedef vector[EntityProc] EntityProcVec
+    ctypedef pair[EntityKey, int] EntityKeyProc
+    ctypedef pair[EntityId, int] EntityIdProc
+    ctypedef vector[EntityIdProc] EntityIdProcVec
+    ctypedef map[EntityId, int] EntityIdProcMap
 
     cdef cppclass MeshIndex:
         Bucket* bucket

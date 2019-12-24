@@ -27,13 +27,24 @@ cdef extern from "stk_mesh/base/BulkData.hpp" namespace "stk::mesh" nogil:
 
         bool modification_begin()
         bool modification_end()
+        # void sort_entities(const stk::mesh::EntitySorterBase&)
+        # void change_entity_owner(const EntityProcVec&)
         void update_field_data_states()
+        void update_field_data_states(FieldBase* field)
 
         const BucketVector& buckets(EntityRank rank) const
 
         const BucketVector& get_buckets(EntityRank rank, const Selector& selector)
 
+        Entity get_entity(EntityRank rank, EntityId entity_id) const
+        Entity get_entity(const EntityKey key) const
+
+        void add_node_sharing(Entity node, int sharing_proc)
+
+        const MeshIndex& mesh_index(Entity entity) const
         EntityId identifier(Entity entity) const
+        EntityRank entity_rank(Entity entity) const
+        EntityKey entity_key(Entity entity) const
         Bucket& bucket(Entity entity) const
         size_t bucket_ordinal(Entity entity) const
         int parallel_owner_rank(Entity entity) const
@@ -51,6 +62,8 @@ cdef extern from "stk_mesh/base/BulkData.hpp" namespace "stk::mesh" nogil:
         unsigned num_faces(Entity entity) const
         unsigned num_elements(Entity entity) const
         unsigned num_sides(Entity entity) const
+
+        size_t get_size_of_entity_index_space() const
 
 cdef class StkBulkData:
     cdef BulkData* bulk
