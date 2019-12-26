@@ -2,6 +2,21 @@
 # distutils: language = c++
 # cython: embedsignature = True
 
+"""\
+STK field operations
+====================
+
+This module exposes the BLAS and parallel operations defined on fields by the
+STK library.
+
+For the BLAS operations, the default functions (matching the STK library) are
+implemented by default for ``double`` data type. The templated versions for
+other data types are implemented with a ``_t`` suffix. For example,
+``stk::mesh::field_fill`` is exposed as ``fill`` for ``double``, and a
+*templated* version is exposed for other data types as ``fill_t``.
+
+"""
+
 cimport cython
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector

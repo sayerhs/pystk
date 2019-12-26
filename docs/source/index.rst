@@ -236,6 +236,11 @@ Parallel
 .. autoclass:: stk.api.util.parallel.Parallel
    :members:
 
+Field Operations
+~~~~~~~~~~~~~~~~
+.. automodule:: stk.api.mesh.field_ops
+   :members:
+
 Enumerated data types
 ~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: stk.api.topology.topology.rank_t
