@@ -75,6 +75,25 @@ cdef class StkSelector:
         return sel
 
     @staticmethod
+    def select_intersection(parts):
+        """Create STK selector from intersection of given parts
+
+        Args:
+            parts (list): A list of StkPart instances
+
+        Return:
+            StkSelector: Python-wrapped STK selector instance
+        """
+        cdef PartVector pvec
+        cdef StkPart pp
+        for pp in parts:
+            pvec.push_back(pp.part)
+        cdef StkSelector sel = StkSelector.__new__(StkSelector)
+        sel.sel = selectIntersection(pvec);
+        return sel
+
+
+    @staticmethod
     def and_(sel1, *args):
         """Get an intersection of selectors
 
@@ -163,3 +182,45 @@ cdef class StkSelector:
             bool: True if the selector does not contain entities of the given rank
         """
         return self.sel.is_empty(rank)
+
+    def __and__(StkSelector self, other):
+        """Return the intersection of two given selectors/parts"""
+        cdef Selector sthis = self.sel
+        cdef StkSelector stmp
+        cdef StkPart ptmp
+
+        cdef StkSelector py_snew = StkSelector.__new__(StkSelector)
+        cdef Selector snew
+
+        if isinstance(other, StkSelector):
+            stmp = other
+            snew = (sthis & stmp.sel)
+            py_snew.sel = snew
+            return py_snew
+        elif isinstance(other, StkPart):
+            ptmp = other
+            snew = (sthis & deref(ptmp.part))
+            py_snew.sel = snew
+            return py_snew
+        return NotImplemented
+
+    def __or__(StkSelector self, other):
+        """Return the intersection of two given selectors/parts"""
+        cdef Selector sthis = self.sel
+        cdef StkSelector stmp
+        cdef StkPart ptmp
+
+        cdef StkSelector py_snew = StkSelector.__new__(StkSelector)
+        cdef Selector snew
+
+        if isinstance(other, StkSelector):
+            stmp = other
+            snew = (sthis | stmp.sel)
+            py_snew.sel = snew
+            return py_snew
+        elif isinstance(other, StkPart):
+            ptmp = other
+            snew = (sthis | deref(ptmp.part))
+            py_snew.sel = snew
+            return py_snew
+        return NotImplemented

@@ -4,6 +4,7 @@
 
 from cython.operator cimport dereference as deref
 from ..topology.topology cimport StkTopology, topology
+from .selector cimport *
 
 cdef class StkPart:
     """stk::mesh::Part """
@@ -102,3 +103,45 @@ cdef class StkPart:
             return "<StkPart: NULL>"
         else:
             return "<StkPart: %s>"%self.name
+
+    def __and__(StkPart self, other):
+        """Return a selector that is the intersection of this part and other"""
+        cdef Part* spart = self.part
+        cdef StkSelector stmp
+        cdef StkPart ptmp
+
+        cdef StkSelector py_snew = StkSelector.__new__(StkSelector)
+        cdef Selector snew
+
+        if isinstance(other, StkSelector):
+            stmp = other
+            snew = (deref(self.part) & stmp.sel)
+            py_snew.sel = snew
+            return py_snew
+        elif isinstance(other, StkPart):
+            ptmp = other
+            snew = (deref(self.part) & deref(ptmp.part))
+            py_snew.sel = snew
+            return py_snew
+        return NotImplemented
+
+    def __or__(StkPart self, other):
+        """Return a selector that is a union if this part and other"""
+        cdef Part* spart = self.part
+        cdef StkSelector stmp
+        cdef StkPart ptmp
+
+        cdef StkSelector py_snew = StkSelector.__new__(StkSelector)
+        cdef Selector snew
+
+        if isinstance(other, StkSelector):
+            stmp = other
+            snew = (deref(self.part) | stmp.sel)
+            py_snew.sel = snew
+            return py_snew
+        elif isinstance(other, StkPart):
+            ptmp = other
+            snew = (deref(self.part) | deref(ptmp.part))
+            py_snew.sel = snew
+            return py_snew
+        return NotImplemented
