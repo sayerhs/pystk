@@ -16,14 +16,12 @@ cdef class StkSelector:
        # Get default sideset names for a generated mesh
        part_names = ("surface_%d"%(i+1) for i in range (6))
        parts = [mesh.get_part(pname) for pname in part_names]
-       sel = StkSelector.and_(
-           StkSelector.select_union(parts),
-           mesh.locally_owned_part)
+       sel = StkSelector.select_union(parts) & meta.locally_owned_part
 
        # Does this selector contain any element entities?
-       print(sel.is_empty(StkEntity.elem))
+       print(sel.is_empty(rank_t.ELEM_RANK))
        # Does the complement contain element entities?
-       print(sel.complement().is_empty(StkEntity.elem))
+       print(sel.complement().is_empty(rank_t.ELEM_RANK))
     """
 
     @staticmethod
