@@ -139,12 +139,25 @@
             
   <div class="section" id="pystk-python-bindings-for-sierra-toolkit-stk">
 <h1>pySTK - Python bindings for Sierra Toolkit (STK)<a class="headerlink" href="#pystk-python-bindings-for-sierra-toolkit-stk" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Version</dt>
+<dd class="field-odd"><p>v0.0.1</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>Dec 27, 2019</p>
+</dd>
+</dl>
 <p>pySTK provides python bindings to <a class="reference external" href="https://trilinos.org/STK">Sierra Toolkit</a> (STK). It uses the <a class="reference external" href="https://cython.org">Cython</a>
 bindings generator to interface with the STK C++ library. The library provides a
 way to interact with <a class="reference external" href="https://prod-ng.sandia.gov/techlib-noauth/access-control.cgi/1992/922137.pdf">Exodus-II database</a>
 through python for generating meshes, pre-processing and post-processing through python
 scripts. The python bindings can be built on Linux and MacOS platforms for
 Python3.</p>
+<p>The python bindings are primarily developed for use in <a class="reference external" href="https://github.com/exawind">ExaWind</a> framework and, therefore, the available
+featureset is heavily based on the needs of the <strong>Exawind</strong> project. However,
+the codebase only depends on the Trilinos/STK library and provides an almost
+1-to-1 python version of the STK API for features that have been implemented so
+far.</p>
 <div class="section" id="installation">
 <span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>pySTK needs the following packages installed on your system to be able to
@@ -367,10 +380,7 @@ You can <a class="reference download internal" download="" href="_downloads/6902
 102
 103
 104
-105
-106
-107
-108</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+105</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&quot;&quot;&quot;\</span>
 <span class="sd">Basic usage of pySTK interface</span>
@@ -445,11 +455,8 @@ You can <a class="reference download internal" download="" href="_downloads/6902
 <span class="n">part</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get_part</span><span class="p">(</span><span class="s2">&quot;surface_1&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Part exists = &quot;</span><span class="p">,</span> <span class="p">(</span><span class="ow">not</span> <span class="n">part</span><span class="o">.</span><span class="n">is_null</span><span class="p">))</span>
 
-<span class="c1"># Get a stk::mesh::Selector instance from this part</span>
-<span class="n">sel_part</span> <span class="o">=</span> <span class="n">StkSelector</span><span class="o">.</span><span class="n">from_part</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
-
-<span class="c1"># Get the selector for entities on `surface_1` locally owned on this rank</span>
-<span class="n">sel</span> <span class="o">=</span> <span class="n">StkSelector</span><span class="o">.</span><span class="n">and_</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">locally_owned_part</span><span class="p">)</span>
+<span class="c1"># Get a stk::mesh::Selector instance for all locally-owned entities of this part</span>
+<span class="n">sel</span> <span class="o">=</span> <span class="n">part</span> <span class="o">&amp;</span> <span class="n">mesh</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">locally_owned_part</span>
 
 <span class="c1"># Check if the selector is empty for a particular entity type</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Surface1 has elems: &quot;</span><span class="p">,</span> <span class="ow">not</span> <span class="n">sel</span><span class="o">.</span><span class="n">is_empty</span><span class="p">(</span><span class="n">StkRank</span><span class="o">.</span><span class="n">ELEM_RANK</span><span class="p">))</span>
@@ -1289,14 +1296,12 @@ through its methods.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get default sideset names for a generated mesh</span>
 <span class="n">part_names</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;surface_</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">mesh</span><span class="o">.</span><span class="n">get_part</span><span class="p">(</span><span class="n">pname</span><span class="p">)</span> <span class="k">for</span> <span class="n">pname</span> <span class="ow">in</span> <span class="n">part_names</span><span class="p">]</span>
-<span class="n">sel</span> <span class="o">=</span> <span class="n">StkSelector</span><span class="o">.</span><span class="n">and_</span><span class="p">(</span>
-    <span class="n">StkSelector</span><span class="o">.</span><span class="n">select_union</span><span class="p">(</span><span class="n">parts</span><span class="p">),</span>
-    <span class="n">mesh</span><span class="o">.</span><span class="n">locally_owned_part</span><span class="p">)</span>
+<span class="n">sel</span> <span class="o">=</span> <span class="n">StkSelector</span><span class="o">.</span><span class="n">select_union</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">meta</span><span class="o">.</span><span class="n">locally_owned_part</span>
 
 <span class="c1"># Does this selector contain any element entities?</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sel</span><span class="o">.</span><span class="n">is_empty</span><span class="p">(</span><span class="n">StkEntity</span><span class="o">.</span><span class="n">elem</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sel</span><span class="o">.</span><span class="n">is_empty</span><span class="p">(</span><span class="n">rank_t</span><span class="o">.</span><span class="n">ELEM_RANK</span><span class="p">))</span>
 <span class="c1"># Does the complement contain element entities?</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sel</span><span class="o">.</span><span class="n">complement</span><span class="p">()</span><span class="o">.</span><span class="n">is_empty</span><span class="p">(</span><span class="n">StkEntity</span><span class="o">.</span><span class="n">elem</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sel</span><span class="o">.</span><span class="n">complement</span><span class="p">()</span><span class="o">.</span><span class="n">is_empty</span><span class="p">(</span><span class="n">rank_t</span><span class="o">.</span><span class="n">ELEM_RANK</span><span class="p">))</span>
 </pre></div>
 </div>
 <dl class="method">

@@ -73,11 +73,8 @@ print("velocity NM1 name: ", velold.name)
 part = mesh.meta.get_part("surface_1")
 print("Part exists = ", (not part.is_null))
 
-# Get a stk::mesh::Selector instance from this part
-sel_part = StkSelector.from_part(part)
-
-# Get the selector for entities on `surface_1` locally owned on this rank
-sel = StkSelector.and_(part, mesh.meta.locally_owned_part)
+# Get a stk::mesh::Selector instance for all locally-owned entities of this part
+sel = part & mesh.meta.locally_owned_part
 
 # Check if the selector is empty for a particular entity type
 print("Surface1 has elems: ", not sel.is_empty(StkRank.ELEM_RANK))
