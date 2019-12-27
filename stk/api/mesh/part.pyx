@@ -7,7 +7,23 @@ from ..topology.topology cimport StkTopology, topology
 from .selector cimport *
 
 cdef class StkPart:
-    """stk::mesh::Part """
+    """stk::mesh::Part
+
+    .. code-block:: python
+
+       # Create a new part and set I/O attribute on that part
+       new_part = meta.declare_part("fluid", rank_t.ELEM_RANK)
+       new_part.set_io_attribute(set_io=True)
+
+       # Retrive a part from a mesh
+       part = meta.get_part("blade-HEX")
+
+       # Get selector for a part and locally owned
+       sel_local = part & meta.locally_owned_part
+
+       # Get selector for all entities in the MPI partition
+       sel_all = part & (meta.locally_owned_part | meta.globally_shared_part)
+    """
 
     def __cinit__(self):
         self.part = NULL

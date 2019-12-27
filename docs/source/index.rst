@@ -2,6 +2,11 @@
 pySTK - Python bindings for Sierra Toolkit (STK)
 ================================================
 
+.. only:: html
+
+   :Version: |version|
+   :Date: |today|
+
 pySTK provides python bindings to `Sierra Toolkit
 <https://trilinos.org/STK>`_ (STK). It uses the `Cython <https://cython.org>`_
 bindings generator to interface with the STK C++ library. The library provides a
@@ -10,6 +15,13 @@ way to interact with `Exodus-II database
 through python for generating meshes, pre-processing and post-processing through python
 scripts. The python bindings can be built on Linux and MacOS platforms for
 Python3.
+
+The python bindings are primarily developed for use in `ExaWind
+<https://github.com/exawind>`_ framework and, therefore, the available
+featureset is heavily based on the needs of the **Exawind** project. However,
+the codebase only depends on the Trilinos/STK library and provides an almost
+1-to-1 python version of the STK API for features that have been implemented so
+far.
 
 .. _installation:
 

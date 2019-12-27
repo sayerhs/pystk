@@ -22,6 +22,7 @@ copyright = '2019, Shreyas Ananthan'
 author = 'Shreyas Ananthan'
 
 # The full version, including alpha/beta/rc tags
+version = 'v0.0.1'
 release = 'v0.0.1'
 
 
