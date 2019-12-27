@@ -7,7 +7,7 @@ pySTK - Python bindings for Sierra Toolkit (STK)
    :Version: |version|
    :Date: |today|
 
-pySTK provides python bindings to `Sierra Toolkit
+`pySTK <https://github.com/sayerhs/pystk>`_ provides python bindings to `Sierra Toolkit
 <https://trilinos.org/STK>`_ (STK). It uses the `Cython <https://cython.org>`_
 bindings generator to interface with the STK C++ library. The library provides a
 way to interact with `Exodus-II database
