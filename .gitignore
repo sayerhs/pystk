@@ -1,0 +1,6 @@
+docs/*
+stk/*
+cmake/*
+tests/*
+_skbuild/*
+pySTK.egg-info/*
