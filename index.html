@@ -1437,6 +1437,20 @@ through its methods.</p>
 <dt id="stk.api.mesh.part.StkPart">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.mesh.part.</code><code class="sig-name descname">StkPart</code><a class="headerlink" href="#stk.api.mesh.part.StkPart" title="Permalink to this definition">¶</a></dt>
 <dd><p>stk::mesh::Part</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new part and set I/O attribute on that part</span>
+<span class="n">new_part</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">declare_part</span><span class="p">(</span><span class="s2">&quot;fluid&quot;</span><span class="p">,</span> <span class="n">rank_t</span><span class="o">.</span><span class="n">ELEM_RANK</span><span class="p">)</span>
+<span class="n">new_part</span><span class="o">.</span><span class="n">set_io_attribute</span><span class="p">(</span><span class="n">set_io</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Retrive a part from a mesh</span>
+<span class="n">part</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">get_part</span><span class="p">(</span><span class="s2">&quot;blade-HEX&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get selector for a part and locally owned</span>
+<span class="n">sel_local</span> <span class="o">=</span> <span class="n">part</span> <span class="o">&amp;</span> <span class="n">meta</span><span class="o">.</span><span class="n">locally_owned_part</span>
+
+<span class="c1"># Get selector for all entities in the MPI partition</span>
+<span class="n">sel_all</span> <span class="o">=</span> <span class="n">part</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">locally_owned_part</span> <span class="o">|</span> <span class="n">meta</span><span class="o">.</span><span class="n">globally_shared_part</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="method">
 <dt id="stk.api.mesh.part.StkPart.contains">
 <code class="sig-name descname">contains</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkPart part</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.part.StkPart.contains" title="Permalink to this definition">¶</a></dt>
