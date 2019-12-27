@@ -1,6 +1,8 @@
 # pySTK - Python bindings for Sierra Toolkit (STK)
 
-pySTK is a Python/Cython wrapper to provide a python interface to STK
+pySTK is a Python/Cython wrapper to provide a python interface to STK. Please
+consult [documentation](https://sayerhs.github.io/pystk/index.html) for
+installation and usage instructions.
 
 ## Requirements
 
