@@ -25,9 +25,10 @@ cdef class StkMesh:
 
     def read_mesh_meta_data(self, str filename,
                             DatabasePurpose purpose=DatabasePurpose.READ_MESH,
-                            TimeMatchOption tmo=TimeMatchOption.CLOSEST,
                             bool auto_decomp = True,
-                            str auto_decomp_type="rcb"):
+                            str auto_decomp_type="rcb",
+                            bool auto_declare_fields = True,
+                            TimeMatchOption tmo=TimeMatchOption.CLOSEST):
         """Open a file and load the meta data from the file
 
         This method combines various operations of the
@@ -41,9 +42,10 @@ cdef class StkMesh:
         Args:
             filename (str): Path to the Exodus database
             purpose (DatabasePurpose): READ_MESH, READ_RESTART
-            tmo (TimeMatchOption): CLOSEST, LINEAR_INTERPOLATION
             auto_decomp (bool): Decompose mesh for parallel runs (default: True)
             auto_decomp_type (str): Decomposition type (default: rcb)
+            auto_declare_fields (bool): If True, declare fields found in file
+            tmo (TimeMatchOption): CLOSEST, LINEAR_INTERPOLATION
 
         """
         if auto_decomp and self.comm.size > 1:
@@ -51,7 +53,8 @@ cdef class StkMesh:
         self.stkio.add_mesh_database(filename, purpose)
         self.stkio.set_bulk_data(self.bulk)
         self.stkio.create_input_mesh()
-        self.stkio.add_all_mesh_fields_as_input_fields(tmo)
+        if auto_declare_fields:
+            self.stkio.add_all_mesh_fields_as_input_fields(tmo)
 
         coords = self.meta.coordinate_field
         coords.add_to_part(self.meta.universal_part,
@@ -60,11 +63,15 @@ cdef class StkMesh:
     cdef create_edges_helper(self):
         create_edges(deref(self.bulk.bulk))
 
-    def populate_bulk_data(self, create_edges=False):
+    def populate_bulk_data(self, create_edges=False, auto_load_fields=False):
         """Commit MetaData and populate BulkData from the input database.
 
         If ``create_edges is True``, then edge entities will be created before
         the field data is loaded.
+
+        if ``auto_load_fields is True`` then this method will automatically
+        load the fields from the database for the latest time found in the
+        database.
         """
         cdef BulkData* bulk = NULL
         if create_edges:
@@ -73,6 +80,15 @@ cdef class StkMesh:
             self.stkio.populate_field_data()
         else:
             self.stkio.populate_bulk_data()
+
+        if auto_load_fields:
+            nsteps = self.stkio.num_time_steps
+            # Do nothing if there are no timesteps
+            if nsteps == 0:
+                return (None, [])
+            time_available = self.stkio.time_steps
+            ftime, missing = self.stkio.read_defined_input_fields_at_time(time_available[-1])
+            return (ftime, missing)
 
     def iter_buckets(self, StkSelector sel, rank_t rank=rank_t.NODE_RANK):
         """Yield iterator for looping over buckets"""
