@@ -30,3 +30,17 @@ cdef class StkTopology:
     def value(self):
         """Topology type"""
         return self.topo.value()
+
+    def __eq__(StkTopology self, other):
+        """Equality comparison"""
+        cdef StkTopology stopo
+        cdef topology topo
+        cdef topology_t topo_t
+        if isinstance(other, StkTopology):
+            stopo = other
+            topo = stopo.topo
+            return self.topo == topo
+        elif isinstance(other, topology_t):
+            topo_t = other
+            return self.topo == topo_t
+        return NotImplemented

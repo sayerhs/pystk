@@ -3,8 +3,9 @@
 # cython: embedsignature = True
 
 from cython.operator cimport dereference as deref
-from ..topology.topology cimport StkTopology, topology
+from ..topology.topology cimport StkTopology, topology, topology_t
 from .selector cimport *
+from . cimport meta
 
 cdef class StkPart:
     """stk::mesh::Part
@@ -98,6 +99,11 @@ cdef class StkPart:
     def is_io_part(self):
         """Return True if this part is an I/O part"""
         is_part_io_part(deref(self.part))
+
+    def set_toplogy(self, topology_t topo):
+        """Set the topology type for a newly created part"""
+        cdef topology topotmp = topology(topo)
+        meta.set_topology(deref(self.part), topotmp)
 
     def set_io_attribute(self, set_io=True):
         """Set the I/O attribute for this part.

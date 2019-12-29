@@ -63,10 +63,16 @@ cdef extern from "stk_topology/topology.hpp" namespace "stk::topology" nogil:
 
 cdef extern from "stk_topology/topology.hpp" namespace "stk" nogil:
     cdef cppclass topology:
+        topology()
+        topology(topology_t topo)
+        topology(const topology& topo)
         bool is_valid() const
         string name() const
         rank_t rank() const
         topology_t value() const
+
+        bool operator==(const topology& rhs) const
+        bool operator==(const topology_t& rhs) const
 
 
 cdef class StkTopology:

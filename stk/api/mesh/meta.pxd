@@ -62,6 +62,8 @@ cdef extern from "stk_mesh/base/MetaData.hpp" namespace "stk::mesh" nogil:
         void commit()
         bool is_commit()
 
+    void set_topology(Part& part, topo_cls topo)
+
     FieldBase& put_field_on_mesh[FieldBase](
         FieldBase& field, const Part& part, const double* init_value)
     FieldBase& put_field_on_mesh[FieldBase](
