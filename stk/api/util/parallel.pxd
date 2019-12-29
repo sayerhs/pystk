@@ -7,6 +7,9 @@ cimport cython
 cdef extern from "mpi.h" nogil:
   ctypedef struct _mpi_comm_t
   ctypedef _mpi_comm_t* MPI_Comm
+  MPI_Comm MPI_COMM_WORLD
+
+  int MPI_Initialized(int* flag)
 
 cdef extern from "stk_util/parallel/Parallel.hpp" namespace "stk" nogil:
   ctypedef MPI_Comm ParallelMachine

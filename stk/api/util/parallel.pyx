@@ -28,6 +28,7 @@ cdef class Parallel:
         """Initialize the MPI object"""
         tmp = arg_list or sys.argv
         argv = [ss.encode('UTF-8') for ss in tmp]
+        cdef int flag
         cdef int nargs = len(argv)
         cdef char** cargv = <char**> PyMem_Malloc(nargs * sizeof(char*));
         if not cargv:
@@ -35,9 +36,13 @@ cdef class Parallel:
 
         cdef Parallel self = Parallel.__new__(Parallel)
         try:
-            for i in range(nargs):
-                cargv[i] = argv[i]
-            self.comm = parallel_machine_init(&nargs, &cargv);
+            MPI_Initialized(&flag)
+            if flag > 0:
+                self.comm = MPI_COMM_WORLD
+            else:
+                for i in range(nargs):
+                    cargv[i] = argv[i]
+                self.comm = parallel_machine_init(&nargs, &cargv);
             self.rank = parallel_machine_rank(self.comm);
             self.size = parallel_machine_size(self.comm);
         finally:
