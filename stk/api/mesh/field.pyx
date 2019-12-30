@@ -90,6 +90,11 @@ cdef class StkFieldBase:
         """Unique ordinal to identify this field"""
         return deref(self.fld).mesh_meta_data_ordinal()
 
+    @property
+    def is_null(self):
+        """Does the field exist"""
+        return (self.fld == NULL)
+
     def is_state_valid(self, FieldState state):
         """Check if the requested state is valid
 
