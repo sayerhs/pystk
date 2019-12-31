@@ -32,6 +32,7 @@ cdef extern from "stk_io/MeshField.hpp" namespace "stk::io::MeshField":
 
 cdef extern from "stk_io/MeshField.hpp" namespace "stk::io":
     cdef cppclass MeshField:
+        MeshField(FieldBase*)
         MeshField& set_read_time(double time_to_read)
         MeshField& set_active()
         MeshField& set_inactive()
@@ -92,6 +93,9 @@ cdef extern from "stk_io/StkMeshIoBroker.hpp" namespace "stk::io":
         double read_defined_input_fields(double time);
         double read_defined_input_fields(double time,
                                        vector[MeshField]* missing)
+
+        void add_input_field(const MeshField& mesh_field)
+        void add_input_field(size_t mesh_index, const MeshField& mesh_field)
 
         size_t create_output_mesh(const string& filename, DatabasePurpose purpose)
         size_t create_output_mesh(const string& filename, DatabasePurpose purpose, double time)

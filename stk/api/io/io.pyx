@@ -6,6 +6,7 @@ cimport cython
 from cython.operator cimport dereference as deref
 from libcpp.string cimport string
 from libcpp.vector cimport vector
+from libcpp.memory cimport unique_ptr
 from ..util.parallel cimport Parallel
 from ..mesh.bulk cimport StkBulkData
 from ..mesh.field cimport StkFieldBase
@@ -134,6 +135,13 @@ cdef class StkIoBroker:
             tmo (TimeMatchOption): Option to interpolate for times
         """
         deref(self.stkio).add_all_mesh_fields_as_input_fields(tmo)
+
+    def add_input_field(self, StkFieldBase field):
+        """Add an input field"""
+        cdef FieldBase* fld = field.fld
+        cdef unique_ptr[MeshField] mfld
+        mfld.reset(new MeshField(fld))
+        deref(self.stkio).add_input_field(deref(mfld))
 
     def read_defined_input_fields_at_step(self, int step):
         """Read fields for a given timetep
