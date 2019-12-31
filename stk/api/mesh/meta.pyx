@@ -206,6 +206,14 @@ cdef class StkMetaData:
             assert fld != NULL, "Field does not exist: %s"%name
         return StkFieldBase.wrap_instance(fld)
 
+    def get_field_by_name(self, str name, must_exist=False):
+        """Return a field by just the name"""
+        cdef string fname = name.encode('UTF-8')
+        cdef FieldBase* fld = get_field_by_name(fname, deref(self.meta))
+        if must_exist:
+            assert fld != NULL, "Field does not exist: %s"%name
+        return StkFieldBase.wrap_instance(fld)
+
     def declare_scalar_field(self, str name,
                              topology.rank_t rank=topology.rank_t.NODE_RANK,
                              unsigned number_of_states=1):

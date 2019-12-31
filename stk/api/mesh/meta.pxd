@@ -78,6 +78,7 @@ cdef extern from "stk_mesh/base/MetaData.hpp" namespace "stk::mesh" nogil:
     FieldBase& put_field_on_mesh[FieldBase](
         FieldBase& field, const Selector& selector, unsigned n1, unsigned n2,
         const double* init_value)
+    FieldBase* get_field_by_name(const string& name, const MetaData& meta)
 
 
 cdef class StkMetaData:
