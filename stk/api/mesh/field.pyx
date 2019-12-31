@@ -86,6 +86,11 @@ cdef class StkFieldBase:
         return deref(self.fld).field_array_rank()
 
     @property
+    def entity_rank(self):
+        """Entity rank on which the field is defined"""
+        return deref(self.fld).entity_rank()
+
+    @property
     def field_ordinal(self):
         """Unique ordinal to identify this field"""
         return deref(self.fld).mesh_meta_data_ordinal()
