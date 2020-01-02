@@ -6,6 +6,9 @@ cimport cython
 from cython.operator cimport dereference as deref
 from libcpp.cast cimport const_cast
 from ..topology cimport topology
+from .bulk cimport BulkData, StkBulkData
+from .part cimport Part, StkPart
+from .field cimport FieldBase, StkFieldBase, FieldBasePtr
 
 cdef class StkMetaData:
     """stk::mesh::MetaData"""
@@ -55,25 +58,25 @@ cdef class StkMetaData:
     def universal_part(self):
         """Part that contains all entities"""
         assert(self.meta != NULL)
-        return StkPart.wrap_instance(&deref(self.meta).universal_part())
+        return StkPart.wrap_reference(deref(self.meta).universal_part())
 
     @property
     def locally_owned_part(self):
         """Part containing entities owned by the current MPI rank"""
         assert(self.meta != NULL)
-        return StkPart.wrap_instance(&deref(self.meta).locally_owned_part())
+        return StkPart.wrap_reference(deref(self.meta).locally_owned_part())
 
     @property
     def globally_shared_part(self):
         """Part containing shared entities with other MPI ranks"""
         assert(self.meta != NULL)
-        return StkPart.wrap_instance(&deref(self.meta).globally_shared_part())
+        return StkPart.wrap_reference(deref(self.meta).globally_shared_part())
 
     @property
     def aura_part(self):
         """Aura part"""
         assert(self.meta != NULL)
-        return StkPart.wrap_instance(&deref(self.meta).aura_part())
+        return StkPart.wrap_reference(deref(self.meta).aura_part())
 
     def get_parts(self, io_parts_only=True):
         """Get all parts registered in STK Mesh
@@ -92,13 +95,14 @@ cdef class StkMetaData:
         cdef long pid
         if io_parts_only:
             for i in range(nparts):
-                pp = deref(part_vec)[i]
-                pid = deref(pp).part_id()
+                pp = <Part*>deref(part_vec)[i]
+                pid = deref(pp).id()
                 if pid > 0:
                     pparts.append(StkPart.wrap_instance(pp))
         else:
             for i in range(nparts):
-                pparts.append(StkPart.wrap_instance(deref(part_vec)[i]))
+                pp = <Part*>deref(part_vec)[i]
+                pparts.append(StkPart.wrap_instance(pp))
         return pparts
 
     def get_part(self, part_name, must_exist=False):
@@ -134,8 +138,7 @@ cdef class StkMetaData:
             StkPart: The newly created part
         """
         cdef string pname = part_name.encode('UTF-8')
-        cdef Part* part = &(deref(self.meta).declare_part(pname, rank))
-        return StkPart.wrap_instance(part)
+        return StkPart.wrap_reference(deref(self.meta).declare_part(pname, rank))
 
     def initialize(self, int ndim=3):
         """Initialize the STK mesh

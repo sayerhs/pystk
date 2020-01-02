@@ -3,7 +3,7 @@
 # cython: embedsignature = True
 
 from cython.operator cimport dereference as deref
-from ..topology.topology cimport StkTopology, topology, topology_t
+from ..topology.topology cimport StkTopology, topology_t
 from .selector cimport *
 from . cimport meta
 
@@ -35,6 +35,12 @@ cdef class StkPart:
         spart.part = part
         return spart
 
+    @staticmethod
+    cdef wrap_reference(Part& part):
+        cdef StkPart spart = StkPart.__new__(StkPart)
+        spart.part = &part
+        return spart
+
     @property
     def name(self):
         """Name of the STK part object"""
@@ -45,7 +51,7 @@ cdef class StkPart:
     def topology(self):
         """Topology of the STK part object"""
         assert(self.part != NULL)
-        cdef topology topo = deref(self.part).topology()
+        cdef topo_cls topo = deref(self.part).topology()
         return StkTopology.wrap_instance(topo)
 
     @property
@@ -55,7 +61,7 @@ cdef class StkPart:
         For IO part, this number is greater than 0
         """
         assert (self.part != NULL), "Invalid part encountered"
-        return deref(self.part).part_id()
+        return deref(self.part).id()
 
     @property
     def is_null(self):
@@ -76,8 +82,10 @@ cdef class StkPart:
         cdef const PartVector* sset = &deref(self.part).supersets()
         cdef size_t nparts = deref(sset).size()
         cdef list plist = []
+        cdef Part* pp
         for i in range(nparts):
-            plist.append(StkPart.wrap_instance(deref(sset)[i]))
+            pp = <Part*>deref(sset)[i]
+            plist.append(StkPart.wrap_instance(pp))
         return plist
 
     @property
@@ -92,7 +100,8 @@ cdef class StkPart:
         cdef Part* pp
         cdef list plist = []
         for i in range(nparts):
-            plist.append(StkPart.wrap_instance(deref(sset)[i]))
+            pp = <Part*>deref(sset)[i]
+            plist.append(StkPart.wrap_instance(pp))
         return plist
 
     @property
@@ -102,7 +111,7 @@ cdef class StkPart:
 
     def set_toplogy(self, topology_t topo):
         """Set the topology type for a newly created part"""
-        cdef topology topotmp = topology(topo)
+        cdef topo_cls topotmp = topo_cls(topo)
         meta.set_topology(deref(self.part), topotmp)
 
     def set_io_attribute(self, set_io=True):

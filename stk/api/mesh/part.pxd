@@ -7,15 +7,13 @@ from libcpp cimport bool
 from libcpp.string cimport string
 from libcpp.vector cimport vector
 from ..topology.topology cimport topology as topo_cls
-
-cdef extern from "stk_mesh/base/Types.hpp" namespace "stk::mesh" nogil:
-    ctypedef vector[Part*] PartVector
+from .selector cimport *
 
 cdef extern from "stk_mesh/base/Part.hpp" namespace "stk::mesh" nogil:
     cdef cppclass Part:
         string& name() const
         topo_cls topology() const
-        int64_t part_id "id" () const
+        int64_t id() const
 
         bool contains(const Part&) const
         const PartVector& supersets() const
@@ -32,3 +30,6 @@ cdef class StkPart:
 
     @staticmethod
     cdef wrap_instance(Part* part)
+
+    @staticmethod
+    cdef wrap_reference(Part& part)

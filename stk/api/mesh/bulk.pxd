@@ -2,13 +2,10 @@
 # distutils: language = c++
 # cython: embedsignature = True
 
+from libcpp cimport bool
 from ..util.parallel cimport ParallelMachine
 from .stk_mesh_fwd cimport *
-from .entity cimport *
-from .selector cimport *
-from .bucket cimport *
-from .part cimport *
-from .meta cimport *
+from .bucket cimport Bucket
 
 cdef extern from "stk_mesh/base/BulkData.hpp" namespace "stk::mesh" nogil:
     cdef cppclass BulkData:

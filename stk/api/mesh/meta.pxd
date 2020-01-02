@@ -8,9 +8,6 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector
 from ..topology.topology cimport topology as topo_cls
 from .stk_mesh_fwd cimport *
-from .part cimport *
-from .bulk cimport *
-from .field cimport *
 
 cdef extern from "stk_mesh/base/MetaData.hpp" namespace "stk::mesh" nogil:
     cdef cppclass MetaData:

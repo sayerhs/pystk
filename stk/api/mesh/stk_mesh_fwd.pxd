@@ -14,7 +14,7 @@ cdef extern from "stk_mesh/base/Entity.hpp" namespace "stk::mesh" nogil:
     cdef cppclass Entity
 
 cdef extern from "stk_mesh/base/MetaData.hpp" namespace "stk::mesh" nogil:
-    cdef cppclass Metadata
+    cdef cppclass MetaData
 
 cdef extern from "stk_mesh/base/BulkData.hpp" namespace "stk::mesh" nogil:
     cdef cppclass BulkData

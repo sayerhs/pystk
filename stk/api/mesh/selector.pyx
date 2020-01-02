@@ -4,6 +4,8 @@
 
 from cython.operator cimport dereference as deref
 from ..topology cimport topology
+from .part cimport StkPart
+from .field cimport StkFieldBase
 
 cdef class StkSelector:
     """stk::mesh::Selector

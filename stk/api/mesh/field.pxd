@@ -8,9 +8,6 @@ from libcpp cimport bool
 from libcpp.string cimport string
 cimport numpy as np
 from .stk_mesh_fwd cimport *
-from .bucket cimport *
-from .part cimport *
-from .meta cimport *
 
 cdef extern from "stk_mesh/base/Entity.hpp" namespace "stk::mesh":
     cdef cppclass Entity:

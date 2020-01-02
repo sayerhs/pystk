@@ -3,8 +3,14 @@
 # cython: embedsignature = True
 
 from cython.operator cimport dereference as deref
+from libcpp cimport bool
 from ..util.parallel cimport Parallel
 from ..topology.topology cimport rank_t
+from .entity cimport StkEntity
+from .selector cimport StkSelector
+from .bucket cimport StkBucket
+from .part cimport StkPart
+from .meta cimport StkMetaData
 
 cdef class StkBulkData:
     """stk::mesh::BulkData"""

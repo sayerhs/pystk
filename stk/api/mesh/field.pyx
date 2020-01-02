@@ -10,6 +10,11 @@ from libcpp.cast cimport dynamic_cast
 from libcpp.vector cimport vector
 from ..topology cimport topology as T
 from .entity cimport StkEntity
+from .bucket cimport StkBucket
+from .meta cimport StkMetaData, put_field_on_mesh
+from .bulk cimport StkBulkData
+from .part cimport StkPart
+from .selector cimport StkSelector
 
 cimport numpy as np
 import numpy as np
