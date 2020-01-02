@@ -8,7 +8,7 @@ from libcpp.cast cimport const_cast
 from ..topology cimport topology
 from .bulk cimport BulkData, StkBulkData
 from .part cimport Part, StkPart
-from .field cimport FieldBase, StkFieldBase, FieldBasePtr
+from .field cimport FieldBase, StkFieldBase, FieldBasePtr, Field
 
 cdef class StkMetaData:
     """stk::mesh::MetaData"""
