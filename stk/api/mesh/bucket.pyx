@@ -5,6 +5,7 @@
 from cython.operator cimport dereference as deref
 from .stk_mesh_fwd cimport EntityRank
 from ..topology.topology cimport StkTopology
+from .entity cimport StkEntity, Entity
 
 cdef class StkBucket:
     """stk::mesh::Bucket"""
@@ -53,3 +54,18 @@ cdef class StkBucket:
     def entity_rank(self):
         """Entity rank corresponding to this bucket"""
         return deref(self.bkt).entity_rank()
+
+    def __getitem__(self, int idx):
+        """Return entity using the index"""
+        assert 0 <= idx < self.size, "Invalid index for bucket (%s)"%self.size
+        return StkEntity.wrap_instance(deref(self.bkt)[idx])
+
+    def __iter__(self):
+        """Return an iterator for looping over bucket entities"""
+        cdef size_t i
+        cdef size_t bsize = self.size
+        cdef StkEntity sent = StkEntity()
+        cdef Bucket* bkt = self.bkt
+        for i in range(bsize):
+            sent.entity = <Entity>deref(bkt)[i]
+            yield sent
