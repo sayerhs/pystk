@@ -3,6 +3,7 @@
 # cython: embedsignature = True
 
 from libcpp cimport bool
+from libcpp.string cimport string
 from ..util.parallel cimport ParallelMachine
 from .stk_mesh_fwd cimport *
 from .bucket cimport Bucket
@@ -61,6 +62,18 @@ cdef extern from "stk_mesh/base/BulkData.hpp" namespace "stk::mesh" nogil:
         unsigned num_sides(Entity entity) const
 
         size_t get_size_of_entity_index_space() const
+
+        Part& ghosting_part(const Ghosting& ghosting) const
+        Ghosting& aura_ghosting() const
+        Ghosting& shared_ghosting() const
+        Ghosting& create_ghosting(const string& name)
+        void change_ghosting(Ghosting& ghosts, const EntityProcVec& add_send)
+        void change_ghosting(
+            Ghosting& ghosts, const EntityProcVec& add_send,
+            vector[EntityKey]& remove_receive)
+        void destroy_ghosting(Ghosting& ghost_layer)
+        void destroy_all_ghosting()
+        const vector[Ghosting*]& ghostings() const
 
 cdef class StkBulkData:
     cdef BulkData* bulk
