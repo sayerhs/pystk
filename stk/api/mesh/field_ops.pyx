@@ -28,15 +28,23 @@ from .meta cimport MetaData
 from .bulk cimport StkBulkData
 from .field cimport FieldBase, StkFieldBase
 from .selector cimport StkSelector
+from .ghosting cimport StkGhosting, Ghosting
 
 cdef pyfields_to_cfields(list fields, vector[const FieldBase*]& cfields):
     cdef FieldBase* cfield
     cdef StkFieldBase pyfield
     cdef string fname
-    for fld in enumerate(fields):
+    for fld in fields:
         pyfield = fld
         cfield = pyfield.fld
         cfields.push_back(cfield)
+
+def communicate_field_data(StkGhosting ghosting, list fields):
+    """Communicate field data for a given ghosting"""
+    cdef const Ghosting* sghost = ghosting.ghosting
+    cdef vector[const FieldBase*] sfields
+    pyfields_to_cfields(fields, sfields)
+    fp.communicate_field_data(deref(sghost), sfields)
 
 def copy_owned_to_shared(StkBulkData bulk, list fields):
     """Copy data from owned entities to the shared entities
