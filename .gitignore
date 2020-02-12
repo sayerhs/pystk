@@ -133,3 +133,7 @@ _skbuild/
 
 # Sphinx 
 docs/build/
+
+# Exawind specific stuff
+pystk-*.sh
+exawind-config.sh
