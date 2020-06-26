@@ -1,17 +1,18 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pySTK - Python bindings for Sierra Toolkit (STK) &#8212; pySTK v0.0.1 documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
@@ -72,7 +73,8 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li><a href="#">Home</a>&nbsp;|</li>
- 
+
+        <li class="nav-item nav-item-this"><a href="">pySTK - Python bindings for Sierra Toolkit (STK)</a></li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -128,7 +130,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -144,7 +146,7 @@
 <dd class="field-odd"><p>v0.0.1</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>Dec 27, 2019</p>
+<dd class="field-even"><p>Jun 26, 2020</p>
 </dd>
 </dl>
 <p><a class="reference external" href="https://github.com/sayerhs/pystk">pySTK</a> provides python bindings to <a class="reference external" href="https://trilinos.org/STK">Sierra Toolkit</a> (STK). It uses the <a class="reference external" href="https://cython.org">Cython</a>
@@ -492,7 +494,7 @@ You can <a class="reference download internal" download="" href="_downloads/6902
 <h2>pySTK API Reference<a class="headerlink" href="#pystk-api-reference" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="stkmesh">
 <h3>StkMesh<a class="headerlink" href="#stkmesh" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.stk.stk_mesh.StkMesh">
 <em class="property">class </em><code class="sig-prename descclassname">stk.stk.stk_mesh.</code><code class="sig-name descname">StkMesh</code><span class="sig-paren">(</span><em class="sig-param">Parallel comm</em>, <em class="sig-param">int ndim=3</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new StkMesh instance</p>
@@ -504,47 +506,50 @@ You can <a class="reference download internal" download="" href="_downloads/6902
 </ul>
 </dd>
 </dl>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.stk.stk_mesh.StkMesh.meta">
 <code class="sig-name descname">meta</code><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.meta" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#stk.api.mesh.meta.StkMetaData" title="stk.api.mesh.meta.StkMetaData"><code class="xref py py-class docutils literal notranslate"><span class="pre">StkMetaData</span></code></a> instance</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.stk.stk_mesh.StkMesh.bulk">
 <code class="sig-name descname">bulk</code><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.bulk" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#stk.api.mesh.bulk.StkBulkData" title="stk.api.mesh.bulk.StkBulkData"><code class="xref py py-class docutils literal notranslate"><span class="pre">StkBulkData</span></code></a> instance</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.stk.stk_mesh.StkMesh.stkio">
 <code class="sig-name descname">stkio</code><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.stkio" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#stk.api.io.io.StkIoBroker" title="stk.api.io.io.StkIoBroker"><code class="xref py py-class docutils literal notranslate"><span class="pre">StkIoBroker</span></code></a> instance</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.stk.stk_mesh.StkMesh.iter_buckets">
 <code class="sig-name descname">iter_buckets</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkSelector sel</em>, <em class="sig-param">rank_t rank=rank_t.NODE_RANK</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.iter_buckets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield iterator for looping over buckets</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.stk.stk_mesh.StkMesh.iter_entities">
 <code class="sig-name descname">iter_entities</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkSelector sel</em>, <em class="sig-param">rank_t rank=rank_t.NODE_RANK</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.iter_entities" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield iterator for looping over entities</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.stk.stk_mesh.StkMesh.populate_bulk_data">
-<code class="sig-name descname">populate_bulk_data</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">create_edges=False</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.populate_bulk_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">populate_bulk_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">create_edges</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">auto_load_fields</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.populate_bulk_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Commit MetaData and populate BulkData from the input database.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">create_edges</span> <span class="pre">is</span> <span class="pre">True</span></code>, then edge entities will be created before
 the field data is loaded.</p>
+<p>if <code class="docutils literal notranslate"><span class="pre">auto_load_fields</span> <span class="pre">is</span> <span class="pre">True</span></code> then this method will automatically
+load the fields from the database for the latest time found in the
+database.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.stk.stk_mesh.StkMesh.read_mesh_meta_data">
-<code class="sig-name descname">read_mesh_meta_data</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode filename</em>, <em class="sig-param">DatabasePurpose purpose=DatabasePurpose.READ_MESH</em>, <em class="sig-param">TimeMatchOption tmo=TimeMatchOption.CLOSEST</em>, <em class="sig-param">bool auto_decomp=True</em>, <em class="sig-param">unicode auto_decomp_type=u'rcb'</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.read_mesh_meta_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_mesh_meta_data</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode filename</em>, <em class="sig-param">DatabasePurpose purpose=DatabasePurpose.READ_MESH</em>, <em class="sig-param">bool auto_decomp=True</em>, <em class="sig-param">unicode auto_decomp_type=u'rcb'</em>, <em class="sig-param">bool auto_declare_fields=True</em>, <em class="sig-param">TimeMatchOption tmo=TimeMatchOption.CLOSEST</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.read_mesh_meta_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open a file and load the meta data from the file</p>
 <p>This method combines various operations of the
 <a class="reference internal" href="#stk.api.io.io.StkIoBroker" title="stk.api.io.io.StkIoBroker"><code class="xref py py-class docutils literal notranslate"><span class="pre">StkIoBroker</span></code></a> for simplicity</p>
@@ -561,17 +566,18 @@ the field data is loaded.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em>) – Path to the Exodus database</p></li>
 <li><p><strong>purpose</strong> (<a class="reference internal" href="#stk.api.io.io.DatabasePurpose" title="stk.api.io.io.DatabasePurpose"><em>DatabasePurpose</em></a>) – READ_MESH, READ_RESTART</p></li>
-<li><p><strong>tmo</strong> (<a class="reference internal" href="#stk.api.io.io.TimeMatchOption" title="stk.api.io.io.TimeMatchOption"><em>TimeMatchOption</em></a>) – CLOSEST, LINEAR_INTERPOLATION</p></li>
 <li><p><strong>auto_decomp</strong> (<em>bool</em>) – Decompose mesh for parallel runs (default: True)</p></li>
 <li><p><strong>auto_decomp_type</strong> (<em>str</em>) – Decomposition type (default: rcb)</p></li>
+<li><p><strong>auto_declare_fields</strong> (<em>bool</em>) – If True, declare fields found in file</p></li>
+<li><p><strong>tmo</strong> (<a class="reference internal" href="#stk.api.io.io.TimeMatchOption" title="stk.api.io.io.TimeMatchOption"><em>TimeMatchOption</em></a>) – CLOSEST, LINEAR_INTERPOLATION</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.stk.stk_mesh.StkMesh.set_auto_join">
-<code class="sig-name descname">set_auto_join</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">output=True</em>, <em class="sig-param">restart=True</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.set_auto_join" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_auto_join</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">output</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">restart</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.set_auto_join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Turn auto-join on/off for output/restart</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -583,9 +589,9 @@ the field data is loaded.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.stk.stk_mesh.StkMesh.set_io_properties">
-<code class="sig-name descname">set_io_properties</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.set_io_properties" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_io_properties</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.stk.stk_mesh.StkMesh.set_io_properties" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set IOSS properties for Exodus I/O</p>
 <p>One of more key-value pairs</p>
 </dd></dl>
@@ -595,17 +601,17 @@ the field data is loaded.</p>
 </div>
 <div class="section" id="stkmetadata">
 <h3>StkMetaData<a class="headerlink" href="#stkmetadata" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.mesh.meta.StkMetaData">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.mesh.meta.</code><code class="sig-name descname">StkMetaData</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData" title="Permalink to this definition">¶</a></dt>
 <dd><p>stk::mesh::MetaData</p>
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.commit">
-<code class="sig-name descname">commit</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.commit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">commit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.commit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Commit the metadata</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.create">
 <em class="property">static </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">int ndim=3</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new stk::mesh::MetaData instance</p>
@@ -622,7 +628,7 @@ the field data is loaded.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.declare_generic_field">
 <code class="sig-name descname">declare_generic_field</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode name</em>, <em class="sig-param">rank_t rank=topology.rank_t.NODE_RANK</em>, <em class="sig-param">unsigned int number_of_states=1</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.declare_generic_field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare a double generic field</p>
@@ -643,7 +649,7 @@ the field data is loaded.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.declare_part">
 <code class="sig-name descname">declare_part</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">part_name</em>, <em class="sig-param">rank_t rank=topology.rank_t.NODE_RANK</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.declare_part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare a new part</p>
@@ -665,7 +671,7 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.declare_scalar_field">
 <code class="sig-name descname">declare_scalar_field</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode name</em>, <em class="sig-param">rank_t rank=topology.rank_t.NODE_RANK</em>, <em class="sig-param">unsigned int number_of_states=1</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.declare_scalar_field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare a double scalar field</p>
@@ -686,7 +692,7 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.declare_vector_field">
 <code class="sig-name descname">declare_vector_field</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode name</em>, <em class="sig-param">rank_t rank=topology.rank_t.NODE_RANK</em>, <em class="sig-param">unsigned int number_of_states=1</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.declare_vector_field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare a double vector field</p>
@@ -707,7 +713,7 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.get_field">
 <code class="sig-name descname">get_field</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode name</em>, <em class="sig-param">rank_t rank=topology.rank_t.NODE_RANK</em>, <em class="sig-param">must_exist=False</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.get_field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a field of name on a requested entity rank</p>
@@ -728,9 +734,15 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="stk.api.mesh.meta.StkMetaData.get_field_by_name">
+<code class="sig-name descname">get_field_by_name</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode name</em>, <em class="sig-param">must_exist=False</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.get_field_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a field by just the name</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.get_part">
-<code class="sig-name descname">get_part</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">part_name</em>, <em class="sig-param">must_exist=False</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.get_part" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_part</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">part_name</span></em>, <em class="sig-param"><span class="n">must_exist</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.get_part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a part by name if it exists</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -751,9 +763,9 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.get_parts">
-<code class="sig-name descname">get_parts</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">io_parts_only=True</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.get_parts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_parts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">io_parts_only</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.get_parts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get all parts registered in STK Mesh</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -768,7 +780,7 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.meta.StkMetaData.initialize">
 <code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int ndim=3</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.initialize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the STK mesh</p>
@@ -779,25 +791,25 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.aura_part">
 <code class="sig-name descname">aura_part</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.aura_part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Aura part</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.coordinate_field">
 <code class="sig-name descname">coordinate_field</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.coordinate_field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the coordinate field</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.coordinate_field_name">
 <code class="sig-name descname">coordinate_field_name</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.coordinate_field_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the name of the coordinates field</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.declare_generic_field_t">
 <code class="sig-name descname">declare_generic_field_t</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.declare_generic_field_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare a generic field of a given datatype</p>
@@ -822,7 +834,7 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.declare_scalar_field_t">
 <code class="sig-name descname">declare_scalar_field_t</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.declare_scalar_field_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare a scalar field of a given type</p>
@@ -848,7 +860,7 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.declare_vector_field_t">
 <code class="sig-name descname">declare_vector_field_t</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.declare_vector_field_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare a vector field</p>
@@ -873,49 +885,49 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.globally_shared_part">
 <code class="sig-name descname">globally_shared_part</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.globally_shared_part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Part containing shared entities with other MPI ranks</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.has_mesh">
 <code class="sig-name descname">has_mesh</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.has_mesh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Does MetaData have a BulkData instance?</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.is_committed">
 <code class="sig-name descname">is_committed</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.is_committed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is the metadata committed?</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.is_initialized">
 <code class="sig-name descname">is_initialized</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.is_initialized" title="Permalink to this definition">¶</a></dt>
 <dd><p>Flag indicating whether the MetaData has been initialized</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.locally_owned_part">
 <code class="sig-name descname">locally_owned_part</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.locally_owned_part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Part containing entities owned by the current MPI rank</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.side_rank">
 <code class="sig-name descname">side_rank</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.side_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rank for the sidesets</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.spatial_dimension">
 <code class="sig-name descname">spatial_dimension</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.spatial_dimension" title="Permalink to this definition">¶</a></dt>
 <dd><p>Spatial dimension of this STK mesh</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.meta.StkMetaData.universal_part">
 <code class="sig-name descname">universal_part</code><a class="headerlink" href="#stk.api.mesh.meta.StkMetaData.universal_part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Part that contains all entities</p>
@@ -926,23 +938,23 @@ return the same part instance.</p>
 </div>
 <div class="section" id="stkbulkdata">
 <h3>StkBulkData<a class="headerlink" href="#stkbulkdata" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.mesh.bulk.StkBulkData">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.mesh.bulk.</code><code class="sig-name descname">StkBulkData</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData" title="Permalink to this definition">¶</a></dt>
 <dd><p>stk::mesh::BulkData</p>
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.bucket">
 <code class="sig-name descname">bucket</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkEntity entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.bucket" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the bucket containing a given entity</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.bucket_ordinal">
 <code class="sig-name descname">bucket_ordinal</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkEntity entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.bucket_ordinal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the bucket ordinal containing the given entity</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.create">
 <em class="property">static </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">StkMetaData smeta</em>, <em class="sig-param">Parallel par</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a BulkData instance</p>
@@ -962,13 +974,13 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.identifier">
 <code class="sig-name descname">identifier</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkEntity entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.identifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the EntityID for the given entity</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.iter_buckets">
 <code class="sig-name descname">iter_buckets</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkSelector sel</em>, <em class="sig-param">rank_t rank=rank_t.NODE_RANK</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.iter_buckets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterator for looping over STK buckets</p>
@@ -985,7 +997,7 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.iter_entities">
 <code class="sig-name descname">iter_entities</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkSelector sel</em>, <em class="sig-param">rank_t rank=rank_t.NODE_RANK</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.iter_entities" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterator for looping over STK buckets</p>
@@ -1002,85 +1014,85 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.num_edges">
 <code class="sig-name descname">num_edges</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkEntity entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.num_edges" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number of edges for a given entity</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.num_elements">
 <code class="sig-name descname">num_elements</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkEntity entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.num_elements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number of elements for a given entity</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.num_faces">
 <code class="sig-name descname">num_faces</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkEntity entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.num_faces" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number of faces for a given entity</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.num_nodes">
 <code class="sig-name descname">num_nodes</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkEntity entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.num_nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number of nodes for a given entity</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.bulk.StkBulkData.parallel_owner_rank">
 <code class="sig-name descname">parallel_owner_rank</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkEntity entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.parallel_owner_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the owning MPI rank for the given entity</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bulk.StkBulkData.get_max_allowed_id">
 <code class="sig-name descname">get_max_allowed_id</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.get_max_allowed_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maximum allowed entity ID</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bulk.StkBulkData.in_modifiable_state">
 <code class="sig-name descname">in_modifiable_state</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.in_modifiable_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is BulkData in a modification cycle</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bulk.StkBulkData.in_synchronized_state">
 <code class="sig-name descname">in_synchronized_state</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.in_synchronized_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is BulkData in a modification cycle</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bulk.StkBulkData.is_automatic_aura_on">
 <code class="sig-name descname">is_automatic_aura_on</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.is_automatic_aura_on" title="Permalink to this definition">¶</a></dt>
 <dd><p>Flag indicating whether aura is on</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bulk.StkBulkData.meta">
 <code class="sig-name descname">meta</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.meta" title="Permalink to this definition">¶</a></dt>
 <dd><p>MetaData associated with this bulk instance</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bulk.StkBulkData.parallel">
 <code class="sig-name descname">parallel</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.parallel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parallel communicator associated with this instance</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bulk.StkBulkData.parallel_rank">
 <code class="sig-name descname">parallel_rank</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.parallel_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Current MPI rank</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bulk.StkBulkData.parallel_size">
 <code class="sig-name descname">parallel_size</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.parallel_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of MPI ranks</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bulk.StkBulkData.synchronized_count">
 <code class="sig-name descname">synchronized_count</code><a class="headerlink" href="#stk.api.mesh.bulk.StkBulkData.synchronized_count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Synchronization counter</p>
@@ -1091,7 +1103,7 @@ return the same part instance.</p>
 </div>
 <div class="section" id="stkfieldbase">
 <h3>StkFieldBase<a class="headerlink" href="#stkfieldbase" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.mesh.field.StkFieldBase">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.mesh.field.</code><code class="sig-name descname">StkFieldBase</code><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>stk::mesh::FieldBase</p>
@@ -1124,9 +1136,9 @@ return the same part instance.</p>
 <span class="n">vel_bkt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.field.StkFieldBase.get_t">
-<code class="sig-name descname">get_t</code><span class="sig-paren">(</span><em class="sig-param">entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.get_t" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_t</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entity</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.get_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get data from a field that is of a given type.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get an int field data</span>
 <span class="n">int_value</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">get_t</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">entity</span><span class="p">)</span>
@@ -1137,7 +1149,7 @@ return the same part instance.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.field.StkFieldBase.add_to_part">
 <code class="sig-name descname">add_to_part</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkPart part</em>, <em class="sig-param">int num_components=1</em>, <em class="sig-param">double[:] init_value=None</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.add_to_part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register field to a given part</p>
@@ -1152,7 +1164,7 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.field.StkFieldBase.add_to_selected">
 <code class="sig-name descname">add_to_selected</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkSelector sel</em>, <em class="sig-param">int num_components=1</em>, <em class="sig-param">double[:] init_value=None</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.add_to_selected" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register field to parts matching the given selector</p>
@@ -1167,7 +1179,7 @@ return the same part instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.field.StkFieldBase.bkt_view">
 <code class="sig-name descname">bkt_view</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkBucket bkt</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.bkt_view" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the data view for a bucket</p>
@@ -1187,7 +1199,7 @@ elements. For vector fields, it returns a 2-D array of shape
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.field.StkFieldBase.field_state">
 <code class="sig-name descname">field_state</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">FieldState state</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.field_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the field at state</p>
@@ -1204,7 +1216,7 @@ elements. For vector fields, it returns a 2-D array of shape
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.field.StkFieldBase.get">
 <code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkEntity entity</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the data for a given entity</p>
@@ -1229,7 +1241,7 @@ example,</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.field.StkFieldBase.is_state_valid">
 <code class="sig-name descname">is_state_valid</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">FieldState state</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.is_state_valid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the requested state is valid</p>
@@ -1246,37 +1258,49 @@ example,</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.StkFieldBase.bulk_data">
 <code class="sig-name descname">bulk_data</code><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.bulk_data" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">stk::mesh::BulkData</span></code> associated with this field</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
+<dt id="stk.api.mesh.field.StkFieldBase.entity_rank">
+<code class="sig-name descname">entity_rank</code><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.entity_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Entity rank on which the field is defined</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.StkFieldBase.field_array_rank">
 <code class="sig-name descname">field_array_rank</code><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.field_array_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Array dimensionality</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.StkFieldBase.field_ordinal">
 <code class="sig-name descname">field_ordinal</code><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.field_ordinal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unique ordinal to identify this field</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
+<dt id="stk.api.mesh.field.StkFieldBase.is_null">
+<code class="sig-name descname">is_null</code><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.is_null" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does the field exist</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.StkFieldBase.meta_data">
 <code class="sig-name descname">meta_data</code><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.meta_data" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">stk::mesh::MetaData</span></code> associated with this field</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.StkFieldBase.name">
 <code class="sig-name descname">name</code><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of the field</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.StkFieldBase.number_of_states">
 <code class="sig-name descname">number_of_states</code><a class="headerlink" href="#stk.api.mesh.field.StkFieldBase.number_of_states" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of states available for this field</p>
@@ -1287,7 +1311,7 @@ example,</p>
 </div>
 <div class="section" id="stkselector">
 <h3>StkSelector<a class="headerlink" href="#stkselector" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.mesh.selector.StkSelector">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.mesh.selector.</code><code class="sig-name descname">StkSelector</code><a class="headerlink" href="#stk.api.mesh.selector.StkSelector" title="Permalink to this definition">¶</a></dt>
 <dd><p>stk::mesh::Selector</p>
@@ -1304,9 +1328,9 @@ through its methods.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">sel</span><span class="o">.</span><span class="n">complement</span><span class="p">()</span><span class="o">.</span><span class="n">is_empty</span><span class="p">(</span><span class="n">rank_t</span><span class="o">.</span><span class="n">ELEM_RANK</span><span class="p">))</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.selector.StkSelector.and_">
-<em class="property">static </em><code class="sig-name descname">and_</code><span class="sig-paren">(</span><em class="sig-param">sel1</em>, <em class="sig-param">*args</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.and_" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">and_</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sel1</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.and_" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get an intersection of selectors</p>
 <p>The arguments can either be <code class="xref py py-class docutils literal notranslate"><span class="pre">Part</span></code> or
 <a class="reference internal" href="#stk.api.mesh.selector.StkSelector" title="stk.api.mesh.selector.StkSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">StkSelector</span></code></a> instances.</p>
@@ -1320,13 +1344,13 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.selector.StkSelector.complement">
-<code class="sig-name descname">complement</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.complement" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">complement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.complement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return !(selector)</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.selector.StkSelector.from_part">
 <em class="property">static </em><code class="sig-name descname">from_part</code><span class="sig-paren">(</span><em class="sig-param">StkPart part</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.from_part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a selector from part</p>
@@ -1343,7 +1367,7 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.selector.StkSelector.is_empty">
 <code class="sig-name descname">is_empty</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">rank_t rank</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.is_empty" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the selector contains entities of a given rank</p>
@@ -1360,9 +1384,9 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.selector.StkSelector.or_">
-<em class="property">static </em><code class="sig-name descname">or_</code><span class="sig-paren">(</span><em class="sig-param">sel1</em>, <em class="sig-param">*args</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.or_" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">or_</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sel1</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.or_" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a union of selectors</p>
 <p>The arguments can either be <code class="xref py py-class docutils literal notranslate"><span class="pre">Part</span></code> or
 <a class="reference internal" href="#stk.api.mesh.selector.StkSelector" title="stk.api.mesh.selector.StkSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">StkSelector</span></code></a> instances.</p>
@@ -1376,7 +1400,7 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.selector.StkSelector.select_field">
 <em class="property">static </em><code class="sig-name descname">select_field</code><span class="sig-paren">(</span><em class="sig-param">StkFieldBase field</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.select_field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a selector from a field instance</p>
@@ -1394,9 +1418,9 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.selector.StkSelector.select_intersection">
-<em class="property">static </em><code class="sig-name descname">select_intersection</code><span class="sig-paren">(</span><em class="sig-param">parts</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.select_intersection" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">select_intersection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parts</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.select_intersection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create STK selector from intersection of given parts</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1411,9 +1435,9 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.selector.StkSelector.select_union">
-<em class="property">static </em><code class="sig-name descname">select_union</code><span class="sig-paren">(</span><em class="sig-param">parts</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.select_union" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">select_union</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parts</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.selector.StkSelector.select_union" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create STK Selector from a list of parts</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1433,7 +1457,7 @@ through its methods.</p>
 </div>
 <div class="section" id="stkpart">
 <h3>StkPart<a class="headerlink" href="#stkpart" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.mesh.part.StkPart">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.mesh.part.</code><code class="sig-name descname">StkPart</code><a class="headerlink" href="#stk.api.mesh.part.StkPart" title="Permalink to this definition">¶</a></dt>
 <dd><p>stk::mesh::Part</p>
@@ -1451,15 +1475,15 @@ through its methods.</p>
 <span class="n">sel_all</span> <span class="o">=</span> <span class="n">part</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">locally_owned_part</span> <span class="o">|</span> <span class="n">meta</span><span class="o">.</span><span class="n">globally_shared_part</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.part.StkPart.contains">
 <code class="sig-name descname">contains</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkPart part</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.part.StkPart.contains" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is the part containined within this part</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.mesh.part.StkPart.set_io_attribute">
-<code class="sig-name descname">set_io_attribute</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">set_io=True</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.part.StkPart.set_io_attribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_io_attribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">set_io</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.part.StkPart.set_io_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the I/O attribute for this part.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1468,13 +1492,19 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py method">
+<dt id="stk.api.mesh.part.StkPart.set_toplogy">
+<code class="sig-name descname">set_toplogy</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">topology_t topo</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.part.StkPart.set_toplogy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the topology type for a newly created part</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="stk.api.mesh.part.StkPart.is_io_part">
 <code class="sig-name descname">is_io_part</code><a class="headerlink" href="#stk.api.mesh.part.StkPart.is_io_part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if this part is an I/O part</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.part.StkPart.is_null">
 <code class="sig-name descname">is_null</code><a class="headerlink" href="#stk.api.mesh.part.StkPart.is_null" title="Permalink to this definition">¶</a></dt>
 <dd><p>Does the part exist in the MetaData</p>
@@ -1488,20 +1518,20 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.part.StkPart.name">
 <code class="sig-name descname">name</code><a class="headerlink" href="#stk.api.mesh.part.StkPart.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of the STK part object</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.part.StkPart.part_id">
 <code class="sig-name descname">part_id</code><a class="headerlink" href="#stk.api.mesh.part.StkPart.part_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unique part identifier</p>
 <p>For IO part, this number is greater than 0</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.part.StkPart.subsets">
 <code class="sig-name descname">subsets</code><a class="headerlink" href="#stk.api.mesh.part.StkPart.subsets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Subsets of this part</p>
@@ -1515,7 +1545,7 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.part.StkPart.supersets">
 <code class="sig-name descname">supersets</code><a class="headerlink" href="#stk.api.mesh.part.StkPart.supersets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Supersets of this part</p>
@@ -1529,7 +1559,7 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.part.StkPart.topology">
 <code class="sig-name descname">topology</code><a class="headerlink" href="#stk.api.mesh.part.StkPart.topology" title="Permalink to this definition">¶</a></dt>
 <dd><p>Topology of the STK part object</p>
@@ -1540,47 +1570,47 @@ through its methods.</p>
 </div>
 <div class="section" id="stkbucket">
 <h3>StkBucket<a class="headerlink" href="#stkbucket" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.mesh.bucket.StkBucket">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.mesh.bucket.</code><code class="sig-name descname">StkBucket</code><a class="headerlink" href="#stk.api.mesh.bucket.StkBucket" title="Permalink to this definition">¶</a></dt>
 <dd><p>stk::mesh::Bucket</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bucket.StkBucket.bucket_id">
 <code class="sig-name descname">bucket_id</code><a class="headerlink" href="#stk.api.mesh.bucket.StkBucket.bucket_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bucket identifier</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bucket.StkBucket.entity_rank">
 <code class="sig-name descname">entity_rank</code><a class="headerlink" href="#stk.api.mesh.bucket.StkBucket.entity_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Entity rank corresponding to this bucket</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bucket.StkBucket.in_aura">
 <code class="sig-name descname">in_aura</code><a class="headerlink" href="#stk.api.mesh.bucket.StkBucket.in_aura" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is this an aura bucket</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bucket.StkBucket.owned">
 <code class="sig-name descname">owned</code><a class="headerlink" href="#stk.api.mesh.bucket.StkBucket.owned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Does this bucket consist of owned entities</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bucket.StkBucket.shared">
 <code class="sig-name descname">shared</code><a class="headerlink" href="#stk.api.mesh.bucket.StkBucket.shared" title="Permalink to this definition">¶</a></dt>
 <dd><p>Does this bucket contain shared entities</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bucket.StkBucket.size">
 <code class="sig-name descname">size</code><a class="headerlink" href="#stk.api.mesh.bucket.StkBucket.size" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of entities in this bucket</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.bucket.StkBucket.topology">
 <code class="sig-name descname">topology</code><a class="headerlink" href="#stk.api.mesh.bucket.StkBucket.topology" title="Permalink to this definition">¶</a></dt>
 <dd><p>Topology of this STK bucket instance</p>
@@ -1591,28 +1621,28 @@ through its methods.</p>
 </div>
 <div class="section" id="stktopology">
 <h3>StkTopology<a class="headerlink" href="#stktopology" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.topology.topology.StkTopology">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.topology.topology.</code><code class="sig-name descname">StkTopology</code><a class="headerlink" href="#stk.api.topology.topology.StkTopology" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
+<dd><dl class="py attribute">
 <dt id="stk.api.topology.topology.StkTopology.is_valid">
 <code class="sig-name descname">is_valid</code><a class="headerlink" href="#stk.api.topology.topology.StkTopology.is_valid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Boolean indicating whether the topology is valid</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.StkTopology.name">
 <code class="sig-name descname">name</code><a class="headerlink" href="#stk.api.topology.topology.StkTopology.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of the topology</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.StkTopology.rank">
 <code class="sig-name descname">rank</code><a class="headerlink" href="#stk.api.topology.topology.StkTopology.rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Entity rank</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.StkTopology.value">
 <code class="sig-name descname">value</code><a class="headerlink" href="#stk.api.topology.topology.StkTopology.value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Topology type</p>
@@ -1623,10 +1653,10 @@ through its methods.</p>
 </div>
 <div class="section" id="stkiobroker">
 <h3>StkIoBroker<a class="headerlink" href="#stkiobroker" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.io.io.StkIoBroker">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.io.io.</code><code class="sig-name descname">StkIoBroker</code><a class="headerlink" href="#stk.api.io.io.StkIoBroker" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.add_all_mesh_fields_as_input_fields">
 <code class="sig-name descname">add_all_mesh_fields_as_input_fields</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">TimeMatchOption tmo=TimeMatchOption.CLOSEST</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.add_all_mesh_fields_as_input_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load all existing fields in mesh database as input fields</p>
@@ -1637,7 +1667,7 @@ through its methods.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.add_field">
 <code class="sig-name descname">add_field</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">size_t fidx</em>, <em class="sig-param">StkFieldBase field</em>, <em class="sig-param">unicode db_field_name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.add_field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register a field for output to a given database.</p>
@@ -1655,7 +1685,13 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="stk.api.io.io.StkIoBroker.add_input_field">
+<code class="sig-name descname">add_input_field</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkFieldBase field</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.add_input_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an input field</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.add_mesh_database">
 <code class="sig-name descname">add_mesh_database</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode filename</em>, <em class="sig-param">DatabasePurpose purpose=DatabasePurpose.READ_MESH</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.add_mesh_database" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read an existing mesh database</p>
@@ -1675,7 +1711,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.add_property">
 <code class="sig-name descname">add_property</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode name</em>, <em class="sig-param">unicode value</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.add_property" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an Ioss::Property to the broker</p>
@@ -1689,7 +1725,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.begin_output_step">
 <code class="sig-name descname">begin_output_step</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">size_t fidx</em>, <em class="sig-param">double time</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.begin_output_step" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start a new output ‘time’ instance in database</p>
@@ -1703,7 +1739,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.create">
 <em class="property">static </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">Parallel comm</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a StkIoBroker instance</p>
@@ -1720,14 +1756,14 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.create_input_mesh">
-<code class="sig-name descname">create_input_mesh</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.create_input_mesh" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_input_mesh</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.create_input_mesh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read/Generate metadata for the mesh</p>
 <p>This method does not commit metadata.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.create_output_mesh">
 <code class="sig-name descname">create_output_mesh</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">unicode filename</em>, <em class="sig-param">DatabasePurpose purpose=DatabasePurpose.WRITE_RESULTS</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.create_output_mesh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an Exodus database for writing results</p>
@@ -1747,7 +1783,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.end_output_step">
 <code class="sig-name descname">end_output_step</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">size_t fidx</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.end_output_step" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mark end of output for current time</p>
@@ -1758,15 +1794,15 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.flush_output">
-<code class="sig-name descname">flush_output</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.flush_output" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">flush_output</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.flush_output" title="Permalink to this definition">¶</a></dt>
 <dd><p>Flush output to disk</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.get_active_mesh">
-<code class="sig-name descname">get_active_mesh</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.get_active_mesh" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_active_mesh</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.get_active_mesh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the current active input mesh</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1778,27 +1814,27 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.populate_bulk_data">
-<code class="sig-name descname">populate_bulk_data</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.populate_bulk_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">populate_bulk_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.populate_bulk_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Populate the bulk data for this mesh.</p>
 <p>This call is equivalent to calling <cite>populate_mesh</cite> followed by <cite>populate_field_data</cite></p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.populate_field_data">
-<code class="sig-name descname">populate_field_data</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.populate_field_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">populate_field_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.populate_field_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Populate field data</p>
 <p>This method must be called after <code class="docutils literal notranslate"><span class="pre">populate_mesh</span></code></p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.populate_mesh">
-<code class="sig-name descname">populate_mesh</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.populate_mesh" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">populate_mesh</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.populate_mesh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Populate the mesh data but not fields</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.process_output_request">
 <code class="sig-name descname">process_output_request</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">size_t file_index</em>, <em class="sig-param">double time</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.process_output_request" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process output request to the database</p>
@@ -1817,7 +1853,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.read_defined_input_fields">
 <code class="sig-name descname">read_defined_input_fields</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">double time</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.read_defined_input_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read fields for a requested time.</p>
@@ -1832,7 +1868,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.read_defined_input_fields_at_step">
 <code class="sig-name descname">read_defined_input_fields_at_step</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">int step</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.read_defined_input_fields_at_step" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read fields for a given timetep</p>
@@ -1849,7 +1885,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.remove_mesh_database">
 <code class="sig-name descname">remove_mesh_database</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">size_t fidx</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.remove_mesh_database" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove a previously registered mesh database from list.</p>
@@ -1861,7 +1897,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.set_active_mesh">
 <code class="sig-name descname">set_active_mesh</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">size_t fidx</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.set_active_mesh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the active input mesh</p>
@@ -1872,7 +1908,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.set_bulk_data">
 <code class="sig-name descname">set_bulk_data</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">StkBulkData bulk</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.set_bulk_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Associate the BulkData with this I/O broker.</p>
@@ -1883,13 +1919,13 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.set_max_num_steps_before_overwrite">
 <code class="sig-name descname">set_max_num_steps_before_overwrite</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">size_t file_index</em>, <em class="sig-param">int max_num_steps_in_file</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.set_max_num_steps_before_overwrite" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maximum number of steps in database before overwriting</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.write_defined_output_fields">
 <code class="sig-name descname">write_defined_output_fields</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">size_t fidx</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.write_defined_output_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write registered fields for a given time</p>
@@ -1908,7 +1944,7 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.io.io.StkIoBroker.write_output_mesh">
 <code class="sig-name descname">write_output_mesh</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">size_t fidx</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.StkIoBroker.write_output_mesh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write output mesh</p>
@@ -1919,25 +1955,25 @@ name is taken from the StkFieldBase instance.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.StkIoBroker.max_time">
 <code class="sig-name descname">max_time</code><a class="headerlink" href="#stk.api.io.io.StkIoBroker.max_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maximum time (double) available in the database</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.StkIoBroker.num_time_steps">
 <code class="sig-name descname">num_time_steps</code><a class="headerlink" href="#stk.api.io.io.StkIoBroker.num_time_steps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of timesteps in this database</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.StkIoBroker.time_steps">
 <code class="sig-name descname">time_steps</code><a class="headerlink" href="#stk.api.io.io.StkIoBroker.time_steps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the list of timesteps available in this database</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.StkIoBroker.write_global">
 <code class="sig-name descname">write_global</code><a class="headerlink" href="#stk.api.io.io.StkIoBroker.write_global" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write a global parameter</p>
@@ -1957,36 +1993,36 @@ name is taken from the StkFieldBase instance.</p>
 </div>
 <div class="section" id="parallel">
 <h3>Parallel<a class="headerlink" href="#parallel" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.util.parallel.Parallel">
 <em class="property">class </em><code class="sig-prename descclassname">stk.api.util.parallel.</code><code class="sig-name descname">Parallel</code><a class="headerlink" href="#stk.api.util.parallel.Parallel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interface to STK MPI</p>
 <p>TODO: Enable linking with mpi4py</p>
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.util.parallel.Parallel.finalize">
-<code class="sig-name descname">finalize</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.util.parallel.Parallel.finalize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">finalize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.util.parallel.Parallel.finalize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call MPI finalize</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="stk.api.util.parallel.Parallel.initialize">
-<em class="property">static </em><code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">arg_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.util.parallel.Parallel.initialize" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg_list</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.util.parallel.Parallel.initialize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the MPI object</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.util.parallel.Parallel.parallel_reduce_max">
 <code class="sig-name descname">parallel_reduce_max</code><a class="headerlink" href="#stk.api.util.parallel.Parallel.parallel_reduce_max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper to stk::parallel_reduce_max</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.util.parallel.Parallel.parallel_reduce_min">
 <code class="sig-name descname">parallel_reduce_min</code><a class="headerlink" href="#stk.api.util.parallel.Parallel.parallel_reduce_min" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper to stk::parallel_reduce_min</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.util.parallel.Parallel.parallel_reduce_sum">
 <code class="sig-name descname">parallel_reduce_sum</code><a class="headerlink" href="#stk.api.util.parallel.Parallel.parallel_reduce_sum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper to stk::parallel_reduce_sum</p>
@@ -2006,7 +2042,7 @@ implemented by default for <code class="docutils literal notranslate"><span clas
 other data types are implemented with a <code class="docutils literal notranslate"><span class="pre">_t</span></code> suffix. For example,
 <code class="docutils literal notranslate"><span class="pre">stk::mesh::field_fill</span></code> is exposed as <code class="docutils literal notranslate"><span class="pre">fill</span></code> for <code class="docutils literal notranslate"><span class="pre">double</span></code>, and a
 <em>templated</em> version is exposed for other data types as <code class="docutils literal notranslate"><span class="pre">fill_t</span></code>.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.axpy">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">axpy</code><span class="sig-paren">(</span><em class="sig-param">double alpha</em>, <em class="sig-param">StkFieldBase xfield</em>, <em class="sig-param">StkFieldBase yfield</em>, <em class="sig-param">StkSelector sel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.axpy" title="Permalink to this definition">¶</a></dt>
 <dd><p>y = alpha * x + y</p>
@@ -2022,7 +2058,13 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
+<dt id="stk.api.mesh.field_ops.communicate_field_data">
+<code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">communicate_field_data</code><span class="sig-paren">(</span><em class="sig-param">StkGhosting ghosting</em>, <em class="sig-param">list fields</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.communicate_field_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Communicate field data for a given ghosting</p>
+</dd></dl>
+
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.copy">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">copy</code><span class="sig-paren">(</span><em class="sig-param">StkFieldBase xfield</em>, <em class="sig-param">StkFieldBase yfield</em>, <em class="sig-param">StkSelector sel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.copy" title="Permalink to this definition">¶</a></dt>
 <dd><p>yfield = xfield</p>
@@ -2037,7 +2079,7 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.copy_owned_to_shared">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">copy_owned_to_shared</code><span class="sig-paren">(</span><em class="sig-param">StkBulkData bulk</em>, <em class="sig-param">list fields</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.copy_owned_to_shared" title="Permalink to this definition">¶</a></dt>
 <dd><p>Copy data from owned entities to the shared entities</p>
@@ -2051,7 +2093,7 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.fill">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">fill</code><span class="sig-paren">(</span><em class="sig-param">double alpha</em>, <em class="sig-param">StkFieldBase field</em>, <em class="sig-param">StkSelector sel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.fill" title="Permalink to this definition">¶</a></dt>
 <dd><p>field[:] = alpha</p>
@@ -2066,7 +2108,7 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.fill_component">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">fill_component</code><span class="sig-paren">(</span><em class="sig-param">double[:] alpha</em>, <em class="sig-param">StkFieldBase field</em>, <em class="sig-param">StkSelector sel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.fill_component" title="Permalink to this definition">¶</a></dt>
 <dd><p>field[:] = alpha[:]</p>
@@ -2081,7 +2123,7 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.parallel_max">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">parallel_max</code><span class="sig-paren">(</span><em class="sig-param">StkBulkData bulk</em>, <em class="sig-param">list fields</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.parallel_max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parallel max</p>
@@ -2095,13 +2137,13 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.parallel_max_including_ghosts">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">parallel_max_including_ghosts</code><span class="sig-paren">(</span><em class="sig-param">StkBulkData bulk</em>, <em class="sig-param">list fields</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.parallel_max_including_ghosts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parallel max</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.parallel_min">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">parallel_min</code><span class="sig-paren">(</span><em class="sig-param">StkBulkData bulk</em>, <em class="sig-param">list fields</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.parallel_min" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parallel min</p>
@@ -2115,13 +2157,13 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.parallel_min_including_ghosts">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">parallel_min_including_ghosts</code><span class="sig-paren">(</span><em class="sig-param">StkBulkData bulk</em>, <em class="sig-param">list fields</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.parallel_min_including_ghosts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parallel min</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.parallel_sum">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">parallel_sum</code><span class="sig-paren">(</span><em class="sig-param">StkBulkData bulk</em>, <em class="sig-param">list fields</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.parallel_sum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parallel sum across all shared entities for a given list of fields</p>
@@ -2135,13 +2177,13 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.parallel_sum_including_ghosts">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">parallel_sum_including_ghosts</code><span class="sig-paren">(</span><em class="sig-param">StkBulkData bulk</em>, <em class="sig-param">list fields</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.parallel_sum_including_ghosts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parallel sum</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="stk.api.mesh.field_ops.swap">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">swap</code><span class="sig-paren">(</span><em class="sig-param">StkFieldBase xfield</em>, <em class="sig-param">StkFieldBase yfield</em>, <em class="sig-param">StkSelector sel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field_ops.swap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Swap the contents of x and y fields</p>
@@ -2156,13 +2198,13 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field_ops.axpy_t">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">axpy_t</code><a class="headerlink" href="#stk.api.mesh.field_ops.axpy_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>y = alpha * x + y</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field_ops.fill_component_t">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">fill_component_t</code><a class="headerlink" href="#stk.api.mesh.field_ops.fill_component_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>] = alpha</p>
@@ -2173,7 +2215,7 @@ other data types are implemented with a <code class="docutils literal notranslat
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field_ops.fill_t">
 <code class="sig-prename descclassname">stk.api.mesh.field_ops.</code><code class="sig-name descname">fill_t</code><a class="headerlink" href="#stk.api.mesh.field_ops.fill_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>] = alpha</p>
@@ -2188,385 +2230,385 @@ other data types are implemented with a <code class="docutils literal notranslat
 </div>
 <div class="section" id="enumerated-data-types">
 <h3>Enumerated data types<a class="headerlink" href="#enumerated-data-types" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.topology.topology.rank_t">
-<em class="property">class </em><code class="sig-prename descclassname">stk.api.topology.topology.</code><code class="sig-name descname">rank_t</code><a class="headerlink" href="#stk.api.topology.topology.rank_t" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">stk.api.topology.topology.</code><code class="sig-name descname">rank_t</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.topology.topology.rank_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>An enumeration.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.rank_t.CONSTRAINT_RANK">
 <code class="sig-name descname">CONSTRAINT_RANK</code><em class="property"> = 4</em><a class="headerlink" href="#stk.api.topology.topology.rank_t.CONSTRAINT_RANK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.rank_t.EDGE_RANK">
 <code class="sig-name descname">EDGE_RANK</code><em class="property"> = 1</em><a class="headerlink" href="#stk.api.topology.topology.rank_t.EDGE_RANK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.rank_t.ELEM_RANK">
 <code class="sig-name descname">ELEM_RANK</code><em class="property"> = 3</em><a class="headerlink" href="#stk.api.topology.topology.rank_t.ELEM_RANK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.rank_t.FACE_RANK">
 <code class="sig-name descname">FACE_RANK</code><em class="property"> = 2</em><a class="headerlink" href="#stk.api.topology.topology.rank_t.FACE_RANK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.rank_t.INVALID_RANK">
 <code class="sig-name descname">INVALID_RANK</code><em class="property"> = 256</em><a class="headerlink" href="#stk.api.topology.topology.rank_t.INVALID_RANK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.rank_t.NODE_RANK">
 <code class="sig-name descname">NODE_RANK</code><em class="property"> = 0</em><a class="headerlink" href="#stk.api.topology.topology.rank_t.NODE_RANK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.mesh.field.FieldState">
-<em class="property">class </em><code class="sig-prename descclassname">stk.api.mesh.field.</code><code class="sig-name descname">FieldState</code><a class="headerlink" href="#stk.api.mesh.field.FieldState" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">stk.api.mesh.field.</code><code class="sig-name descname">FieldState</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.mesh.field.FieldState" title="Permalink to this definition">¶</a></dt>
 <dd><p>An enumeration.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateInvalid">
 <code class="sig-name descname">StateInvalid</code><em class="property"> = 6</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateInvalid" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateN">
 <code class="sig-name descname">StateN</code><em class="property"> = 1</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateNM1">
 <code class="sig-name descname">StateNM1</code><em class="property"> = 2</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateNM1" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateNM2">
 <code class="sig-name descname">StateNM2</code><em class="property"> = 3</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateNM2" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateNM3">
 <code class="sig-name descname">StateNM3</code><em class="property"> = 4</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateNM3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateNM4">
 <code class="sig-name descname">StateNM4</code><em class="property"> = 5</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateNM4" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateNP1">
 <code class="sig-name descname">StateNP1</code><em class="property"> = 0</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateNP1" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateNew">
 <code class="sig-name descname">StateNew</code><em class="property"> = 0</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateNew" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateNone">
 <code class="sig-name descname">StateNone</code><em class="property"> = 0</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateNone" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.mesh.field.FieldState.StateOld">
 <code class="sig-name descname">StateOld</code><em class="property"> = 1</em><a class="headerlink" href="#stk.api.mesh.field.FieldState.StateOld" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.io.io.DatabasePurpose">
-<em class="property">class </em><code class="sig-prename descclassname">stk.api.io.io.</code><code class="sig-name descname">DatabasePurpose</code><a class="headerlink" href="#stk.api.io.io.DatabasePurpose" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">stk.api.io.io.</code><code class="sig-name descname">DatabasePurpose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.DatabasePurpose" title="Permalink to this definition">¶</a></dt>
 <dd><p>An enumeration.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.DatabasePurpose.APPEND_RESULTS">
 <code class="sig-name descname">APPEND_RESULTS</code><em class="property"> = 16</em><a class="headerlink" href="#stk.api.io.io.DatabasePurpose.APPEND_RESULTS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.DatabasePurpose.PURPOSE_UNKNOWN">
 <code class="sig-name descname">PURPOSE_UNKNOWN</code><em class="property"> = 0</em><a class="headerlink" href="#stk.api.io.io.DatabasePurpose.PURPOSE_UNKNOWN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.DatabasePurpose.READ_MESH">
 <code class="sig-name descname">READ_MESH</code><em class="property"> = 4</em><a class="headerlink" href="#stk.api.io.io.DatabasePurpose.READ_MESH" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.DatabasePurpose.READ_RESTART">
 <code class="sig-name descname">READ_RESTART</code><em class="property"> = 8</em><a class="headerlink" href="#stk.api.io.io.DatabasePurpose.READ_RESTART" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.DatabasePurpose.WRITE_RESTART">
 <code class="sig-name descname">WRITE_RESTART</code><em class="property"> = 2</em><a class="headerlink" href="#stk.api.io.io.DatabasePurpose.WRITE_RESTART" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.DatabasePurpose.WRITE_RESULTS">
 <code class="sig-name descname">WRITE_RESULTS</code><em class="property"> = 1</em><a class="headerlink" href="#stk.api.io.io.DatabasePurpose.WRITE_RESULTS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.io.io.TimeMatchOption">
-<em class="property">class </em><code class="sig-prename descclassname">stk.api.io.io.</code><code class="sig-name descname">TimeMatchOption</code><a class="headerlink" href="#stk.api.io.io.TimeMatchOption" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">stk.api.io.io.</code><code class="sig-name descname">TimeMatchOption</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.io.io.TimeMatchOption" title="Permalink to this definition">¶</a></dt>
 <dd><p>An enumeration.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.TimeMatchOption.CLOSEST">
 <code class="sig-name descname">CLOSEST</code><em class="property"> = 1</em><a class="headerlink" href="#stk.api.io.io.TimeMatchOption.CLOSEST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.TimeMatchOption.LINEAR_INTERPOLATION">
 <code class="sig-name descname">LINEAR_INTERPOLATION</code><em class="property"> = 0</em><a class="headerlink" href="#stk.api.io.io.TimeMatchOption.LINEAR_INTERPOLATION" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.io.io.TimeMatchOption.SPECIFIED">
 <code class="sig-name descname">SPECIFIED</code><em class="property"> = 2</em><a class="headerlink" href="#stk.api.io.io.TimeMatchOption.SPECIFIED" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="stk.api.topology.topology.topology_t">
-<em class="property">class </em><code class="sig-prename descclassname">stk.api.topology.topology.</code><code class="sig-name descname">topology_t</code><a class="headerlink" href="#stk.api.topology.topology.topology_t" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">stk.api.topology.topology.</code><code class="sig-name descname">topology_t</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#stk.api.topology.topology.topology_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>An enumeration.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.BEAM_2">
 <code class="sig-name descname">BEAM_2</code><em class="property"> = 13</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.BEAM_2" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.BEAM_3">
 <code class="sig-name descname">BEAM_3</code><em class="property"> = 14</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.BEAM_3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.BEGIN_TOPOLOGY">
 <code class="sig-name descname">BEGIN_TOPOLOGY</code><em class="property"> = 1</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.BEGIN_TOPOLOGY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.END_TOPOLOGY">
 <code class="sig-name descname">END_TOPOLOGY</code><em class="property"> = 44</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.END_TOPOLOGY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.HEX_20">
 <code class="sig-name descname">HEX_20</code><em class="property"> = 42</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.HEX_20" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.HEX_27">
 <code class="sig-name descname">HEX_27</code><em class="property"> = 43</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.HEX_27" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.HEX_8">
 <code class="sig-name descname">HEX_8</code><em class="property"> = 41</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.HEX_8" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.INVALID_TOPOLOGY">
 <code class="sig-name descname">INVALID_TOPOLOGY</code><em class="property"> = 0</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.INVALID_TOPOLOGY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.LINE_2">
 <code class="sig-name descname">LINE_2</code><em class="property"> = 2</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.LINE_2" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.LINE_2_1D">
 <code class="sig-name descname">LINE_2_1D</code><em class="property"> = 11</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.LINE_2_1D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.LINE_3">
 <code class="sig-name descname">LINE_3</code><em class="property"> = 3</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.LINE_3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.LINE_3_1D">
 <code class="sig-name descname">LINE_3_1D</code><em class="property"> = 12</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.LINE_3_1D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.NODE">
 <code class="sig-name descname">NODE</code><em class="property"> = 1</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.NODE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.PARTICLE">
 <code class="sig-name descname">PARTICLE</code><em class="property"> = 10</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.PARTICLE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.PYRAMID_13">
 <code class="sig-name descname">PYRAMID_13</code><em class="property"> = 36</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.PYRAMID_13" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.PYRAMID_14">
 <code class="sig-name descname">PYRAMID_14</code><em class="property"> = 37</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.PYRAMID_14" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.PYRAMID_5">
 <code class="sig-name descname">PYRAMID_5</code><em class="property"> = 35</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.PYRAMID_5" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.QUAD_4">
 <code class="sig-name descname">QUAD_4</code><em class="property"> = 7</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.QUAD_4" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.QUAD_4_2D">
 <code class="sig-name descname">QUAD_4_2D</code><em class="property"> = 22</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.QUAD_4_2D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.QUAD_8">
 <code class="sig-name descname">QUAD_8</code><em class="property"> = 8</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.QUAD_8" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.QUAD_8_2D">
 <code class="sig-name descname">QUAD_8_2D</code><em class="property"> = 23</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.QUAD_8_2D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.QUAD_9">
 <code class="sig-name descname">QUAD_9</code><em class="property"> = 9</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.QUAD_9" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.QUAD_9_2D">
 <code class="sig-name descname">QUAD_9_2D</code><em class="property"> = 24</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.QUAD_9_2D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SHELL_LINE_2">
 <code class="sig-name descname">SHELL_LINE_2</code><em class="property"> = 15</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SHELL_LINE_2" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SHELL_LINE_3">
 <code class="sig-name descname">SHELL_LINE_3</code><em class="property"> = 16</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SHELL_LINE_3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SHELL_QUAD_4">
 <code class="sig-name descname">SHELL_QUAD_4</code><em class="property"> = 28</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SHELL_QUAD_4" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SHELL_QUAD_8">
 <code class="sig-name descname">SHELL_QUAD_8</code><em class="property"> = 29</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SHELL_QUAD_8" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SHELL_QUAD_9">
 <code class="sig-name descname">SHELL_QUAD_9</code><em class="property"> = 30</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SHELL_QUAD_9" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SHELL_TRI_3">
 <code class="sig-name descname">SHELL_TRI_3</code><em class="property"> = 25</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SHELL_TRI_3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SHELL_TRI_4">
 <code class="sig-name descname">SHELL_TRI_4</code><em class="property"> = 26</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SHELL_TRI_4" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SHELL_TRI_6">
 <code class="sig-name descname">SHELL_TRI_6</code><em class="property"> = 27</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SHELL_TRI_6" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SPRING_2">
 <code class="sig-name descname">SPRING_2</code><em class="property"> = 17</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SPRING_2" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.SPRING_3">
 <code class="sig-name descname">SPRING_3</code><em class="property"> = 18</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.SPRING_3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TET_10">
 <code class="sig-name descname">TET_10</code><em class="property"> = 33</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TET_10" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TET_11">
 <code class="sig-name descname">TET_11</code><em class="property"> = 34</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TET_11" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TET_4">
 <code class="sig-name descname">TET_4</code><em class="property"> = 31</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TET_4" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TET_8">
 <code class="sig-name descname">TET_8</code><em class="property"> = 32</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TET_8" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TRI_3">
 <code class="sig-name descname">TRI_3</code><em class="property"> = 4</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TRI_3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TRI_3_2D">
 <code class="sig-name descname">TRI_3_2D</code><em class="property"> = 19</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TRI_3_2D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TRI_4">
 <code class="sig-name descname">TRI_4</code><em class="property"> = 5</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TRI_4" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TRI_4_2D">
 <code class="sig-name descname">TRI_4_2D</code><em class="property"> = 20</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TRI_4_2D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TRI_6">
 <code class="sig-name descname">TRI_6</code><em class="property"> = 6</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TRI_6" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.TRI_6_2D">
 <code class="sig-name descname">TRI_6_2D</code><em class="property"> = 21</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.TRI_6_2D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.WEDGE_15">
 <code class="sig-name descname">WEDGE_15</code><em class="property"> = 39</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.WEDGE_15" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.WEDGE_18">
 <code class="sig-name descname">WEDGE_18</code><em class="property"> = 40</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.WEDGE_18" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="stk.api.topology.topology.topology_t.WEDGE_6">
 <code class="sig-name descname">WEDGE_6</code><em class="property"> = 38</em><a class="headerlink" href="#stk.api.topology.topology.topology_t.WEDGE_6" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -2586,6 +2628,7 @@ other data types are implemented with a <code class="docutils literal notranslat
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -2601,12 +2644,13 @@ other data types are implemented with a <code class="docutils literal notranslat
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li><a href="#">Home</a>&nbsp;|</li>
- 
+
+        <li class="nav-item nav-item-this"><a href="">pySTK - Python bindings for Sierra Toolkit (STK)</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Shreyas Ananthan.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.1.
     </div>
   </body>
 </html>
