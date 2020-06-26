@@ -13,7 +13,7 @@ jobs:
       - name: Build pystk
         run: docker build -t pystk .
       - name: Build docs
-        run: docker run -v ${GITHUB_WORKSPACE}:/workspace make
+        run: docker run -v ${GITHUB_WORKSPACE}:/workspace pystk make
       - name: Deploy docs
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
