@@ -15,8 +15,8 @@ COPY . /pystk
 RUN (\
     pip3 install -r requirements.txt \
     && python setup.py build_ext --inplace -- -DCMAKE_PREFIX_PATH=/opt/exawind/ \
-    && pytest tests/ \
     && pip3 install -e . \
+    && pytest tests/ \
     )
 
 WORKDIR /workspace
