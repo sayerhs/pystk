@@ -86,7 +86,7 @@ def test_dtype_field_access(hex_1elem_mesh):
     buckets = bulk.iter_buckets(sel, rank_t.NODE_RANK)
     bkt = next(buckets)
 
-    ibl = iblank.bkt_view_t[int](bkt)
+    ibl = iblank.bkt_view_int(bkt)
     assert ibl.dtype == np.int32
 
 def test_field_modification(stk_mesh_fields):

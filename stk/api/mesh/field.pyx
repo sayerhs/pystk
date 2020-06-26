@@ -175,22 +175,22 @@ cdef class StkFieldBase:
         else:
             return np.asarray(<double[:bkt.size, :ncomp]>ptr)
 
-    # def get_t(self, StkEntity entity, cython.numeric dtype=0):
-    #     """Get the data for a given entity"""
-    #     cdef Entity sentity = entity.entity
-    #     cdef void* ptr = field_data(deref(self.fld), sentity)
-    #     cdef unsigned ncomp = field_scalars_per_entity(deref(self.fld), sentity)
-    #     return np.asarray(<cython.numeric[:ncomp]>ptr)
+    def get_int(self, StkEntity entity):
+        """Get the data for a given entity"""
+        cdef Entity sentity = entity.entity
+        cdef void* ptr = field_data(deref(self.fld), sentity)
+        cdef unsigned ncomp = field_scalars_per_entity(deref(self.fld), sentity)
+        return np.asarray(<int[:ncomp]>ptr)
 
-    # def bkt_view_t(self, StkBucket bkt, cython.numeric dtype=0):
-    #     """Get the data view for a bucket"""
-    #     cdef Bucket* sbkt = bkt.bkt
-    #     cdef void* ptr = field_data(deref(self.fld), deref(sbkt))
-    #     cdef unsigned ncomp = field_scalars_per_entity(deref(self.fld), deref(sbkt))
-    #     if ncomp == 1:
-    #         return np.asarray(<cython.numeric[:bkt.size]>ptr)
-    #     else:
-    #         return np.asarray(<cython.numeric[:bkt.size, :ncomp]>ptr)
+    def bkt_view_int(self, StkBucket bkt):
+        """Get the data view for a bucket"""
+        cdef Bucket* sbkt = bkt.bkt
+        cdef void* ptr = field_data(deref(self.fld), deref(sbkt))
+        cdef unsigned ncomp = field_scalars_per_entity(deref(self.fld), deref(sbkt))
+        if ncomp == 1:
+            return np.asarray(<int[:bkt.size]>ptr)
+        else:
+            return np.asarray(<int[:bkt.size, :ncomp]>ptr)
 
     def add_to_part(self, StkPart part, int num_components=1, double[:] init_value=None):
         """Register field to a given part
